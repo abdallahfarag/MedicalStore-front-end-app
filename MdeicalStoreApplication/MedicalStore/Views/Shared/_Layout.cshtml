@@ -47,12 +47,25 @@
                                     <div class="user_icon">
                                         <img src="images/user.svg" alt="" />
                                     </div>
-                                    <div>
-                                        @Html.ActionLink("Register", "Register", "Account")
-                                    </div>
-                                    <div>
-                                        <a>@Html.ActionLink("Login", "Login", "Account")</a>
-                                    </div>
+                                    @if (Session["id"] == null)
+                                    {
+                                        <div>
+                                            @Html.ActionLink("Register", "Register", "Account")
+                                        </div>
+                                        <div>
+                                            <a>@Html.ActionLink("Login", "Login", "Account")</a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div>
+                                            <a>@Html.ActionLink("Logout", "Logout", "Account")</a>
+                                        </div>
+
+                                        <div>
+                                            <span style="color:#0e8ce4;font-weight:bold">@Session["username"] </span>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>

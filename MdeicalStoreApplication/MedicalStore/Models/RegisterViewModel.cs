@@ -8,11 +8,11 @@ namespace MedicalStore.Models
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Email is mandatory")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "User Name is mandatory")]
         [Display(Name = "User Name")]
         [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string UserName { get; set; }
@@ -20,7 +20,7 @@ namespace MedicalStore.Models
         public string Address { get; set; }
         public string Gender { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is mandatory")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
