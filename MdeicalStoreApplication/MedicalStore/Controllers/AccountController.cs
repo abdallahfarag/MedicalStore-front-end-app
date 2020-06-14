@@ -8,6 +8,10 @@ using System.Net;
 using System.Net.Http;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Headers;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography;
+using MedicalStore.Helpers;
 
 namespace MedicalStore.Controllers
 {
@@ -46,6 +50,7 @@ namespace MedicalStore.Controllers
 
                         Session["id"] = userInfo.Id;
                         Session["username"] = userInfo.UserName;
+                        Session["userinfo"] = userInfo;
                         Session["accessToken"] = accessTokenResult.access_token;
 
                         return RedirectToAction("Index", "Home");
@@ -77,6 +82,19 @@ namespace MedicalStore.Controllers
                     });
                     var result = client.PostAsync("token", content).Result;
                     var accessTokenContent = result.Content.ReadAsAsync<TokenViewModel>().Result;
+                    #region trying encode jwtToken
+                    //var handelr = new JwtSecurityTokenHandler();
+                    //var key = new Microsoft.IdentityModel.Tokens.RsaSecurityKey("31bf3856ad364e35");
+                    //var validation = new TokenValidationParameters
+                    //{
+                    //    ValidateIssuerSigningKey = true,
+                    //    IssuerSigningKey = new RsaSecurityKey(),
+                    //    ValidateIssuer = false,
+                    //    ValidateAudience = false
+                    //};
+                    //var claims = handelr.ValidateToken(accessTokenContent.access_token, validation, out var token);
+                    //var jsonToken = handelr.ReadJwtToken(accessTokenContent.access_token); 
+                    #endregion
 
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessTokenContent.access_token);
                     var userInfoResponseMsg = client.GetAsync("api/Account/UserInfo").Result;
@@ -86,6 +104,7 @@ namespace MedicalStore.Controllers
 
                         Session["id"] = userInfo.Id;
                         Session["username"] = userInfo.UserName;
+                        Session["userinfo"] = userInfo;
                         Session["accessToken"] = accessTokenContent.access_token;
 
                         return RedirectToAction("Index", "Home");
