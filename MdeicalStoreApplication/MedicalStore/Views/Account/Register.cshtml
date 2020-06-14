@@ -1,0 +1,66 @@
+﻿@model MedicalStore.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link href="~/Content/form.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+        <body>
+            <div class="container">
+                <div class="row cll">
+                     @*<a href="~/Views/Home/Index.cshtml"> <i class="fas fa-arrow-circle-left"></i></a>*@ 
+                    <div class="main-d">
+                        <div class="main col-md-6 col-xs-12">
+                            <h1 class="text-center he">REGISTER</h1>
+                            @using (Ajax.BeginForm("Login", "Account", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "", InsertionMode = InsertionMode.ReplaceWith }))
+                            {
+                                @Html.EditorFor(i => i.Email, additionalViewData: new { htmlAttributes = new { name = "mail", id = "email", placeholder = "email" } })
+                                @Html.ValidationMessageFor(i => i.Email, "", htmlAttributes: new { id = "erremail" })
+
+                                @Html.EditorFor(i => i.UserName, additionalViewData: new { htmlAttributes = new { name = "user", id = "username", placeholder = "username" } })
+                                @Html.ValidationMessageFor(i => i.UserName, "", htmlAttributes: new { id = "errname" })
+
+                                @Html.EditorFor(i => i.Password, additionalViewData: new { htmlAttributes = new { name = "pass", id = "password", placeholder = "password" } })
+                                @Html.ValidationMessageFor(i => i.Password, "", htmlAttributes: new { id = "errpass" })
+
+                                @Html.EditorFor(i => i.ConfirmPassword, additionalViewData: new { htmlAttributes = new { name = "con", id = "conferm", placeholder = "confirm password" } })
+                                @Html.ValidationMessageFor(i => i.ConfirmPassword, "", htmlAttributes: new { id = "errpass1" })
+
+                                <input type="submit" name="ok" value="REGISTER" class="btn" />
+
+                            }
+
+                            <div class="login-1">
+                                <p class="text-center login22">
+                                    Don't Have an Account ?
+                                    @*<a href="#" onclick="reg()"> Login Now</a>*@
+                                    @Html.ActionLink("Login" ,"Login" ,"Account")
+                                </p>
+                            </div>
+                        </div>
+         
+                    </div>
+                    <div class="col-xs-12 main-copy">
+                        <p class="copy">
+                            &copy; 2020 ITI Ismallia 3M |
+                            <span class="copy-sp">Design by MedicalStore Team</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+</body>
+
+</html>

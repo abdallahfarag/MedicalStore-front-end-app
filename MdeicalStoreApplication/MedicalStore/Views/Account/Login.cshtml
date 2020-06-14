@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/form.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row cll">
+             <a href="index.html"> <i class="fas fa-arrow-circle-left"></i></a> 
+            <div class="main-d">
+                <div class="login col-md-6 col-xs-12 col-lg-8">
+                    <form action="#" method="GET">
+                        <input type="text"
+                               name="user"
+                               id="log-user"
+                               placeholder="username"
+                               autocomplete="off"
+                               required />
+                        <input type="password"
+                               name="pass"
+                               id="log-pass"
+                               placeholder="password"
+                               autocomplete="off"
+                               required />
+                        <input type="submit" name="login" id="log" value="LOGIN" />
+                    </form>
+                    <div class="lo">
+                        <p class="text-center" style="color: #0984e3;">
+                            Don't Have an Account ?
+                            <a href="#" onclick="log()"> Register Now</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 main-copy">
+                <p class="copy">
+                    &copy; 2020 ITI Ismallia 3M |
+                    <span class="copy-sp">Design by MedicalStore Team</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+            <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+</body>
+</html>

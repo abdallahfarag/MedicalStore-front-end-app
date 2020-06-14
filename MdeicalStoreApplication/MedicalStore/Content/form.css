@@ -5,17 +5,17 @@
   box-sizing: border-box;
 }
 
-/*body {
+body {
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.7),
       rgba(255, 255, 255, 0.7)
     ),
-    url(../images/1.jpg) !important;
+    url(../Images/1.jpg) !important;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
-}*/
+}
 .login-1 a {
   color: rgb(70, 0, 182);
   transition: all 0.3s ease-in-out;
@@ -32,22 +32,22 @@ a:hover {
   position: relative;
   padding-top: 100px;
 }
-/*i {
+i {
   font-size: 1.5rem;
   position: absolute;
   top: 20px;
   left: 0;
   color: #399be7;
   animation: back 1.2s infinite alternate linear;
-}*/
-/*@keyframes back {
+}
+@keyframes back {
   0% {
     left: 0;
   }
   100% {
     left: 20px;
   }
-}*/
+}
 .main-d {
   width: 100%;
 }

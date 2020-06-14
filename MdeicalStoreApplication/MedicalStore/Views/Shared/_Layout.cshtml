@@ -16,7 +16,6 @@
     <link href="~/Content/main_styles.css" rel="stylesheet" />
     <link href="~/Content/responsive.css" rel="stylesheet" />
     <link href="~/Content/all.css" rel="stylesheet" />
-    <link href="~/Content/form.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -49,10 +48,10 @@
                                         <img src="images/user.svg" alt="" />
                                     </div>
                                     <div>
-                                        @Html.ActionLink("Register", "Register", "Home")
+                                        @Html.ActionLink("Register", "Register", "Account")
                                     </div>
                                     <div>
-                                        <a>Sign in</a>
+                                        <a>@Html.ActionLink("Login", "Login", "Account")</a>
                                     </div>
                                 </div>
                             </div>

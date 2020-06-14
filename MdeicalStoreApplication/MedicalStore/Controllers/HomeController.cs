@@ -14,10 +14,6 @@ namespace MedicalStore.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
+       
     }
 }
