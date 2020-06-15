@@ -24,7 +24,7 @@ namespace MedicalStore.Models
         public int QuantityInStock { get; set; }
 
         [Required]
-        public string ImageUrl { get; set; }
+        public string Image { get; set; }
 
         public decimal Price { get; set; }
 

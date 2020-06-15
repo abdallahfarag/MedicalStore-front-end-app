@@ -52,7 +52,10 @@ namespace MedicalStore.Controllers
                         Session["username"] = userInfo.UserName;
                         Session["userinfo"] = userInfo;
                         Session["accessToken"] = accessTokenResult.access_token;
-
+                        if(AuthorizationHelper.GetUserInfo().RoleName == "Admin")
+                        {
+                            return RedirectToAction("AddProduct", "Product");
+                        }
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -106,6 +109,10 @@ namespace MedicalStore.Controllers
                         Session["username"] = userInfo.UserName;
                         Session["userinfo"] = userInfo;
                         Session["accessToken"] = accessTokenContent.access_token;
+                        if (AuthorizationHelper.GetUserInfo().RoleName == "Admin")
+                        {
+                            return RedirectToAction("AddProduct", "Product");
+                        }
 
                         return RedirectToAction("Index", "Home");
                     }
