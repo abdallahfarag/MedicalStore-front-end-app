@@ -112,6 +112,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -1840,6 +1841,7 @@
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.ttf" />
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.woff" />
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.woff2" />
+    <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -3826,6 +3828,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -3865,6 +3868,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Categories\AllCategories.cshtml" />
     <Content Include="Views\Product\AddProduct.cshtml" />
+    <Content Include="Views\Admin\AdminDashBoard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3877,7 +3881,6 @@
     <Folder Include="MEDICAL STORE\plugins\fontawesome-free-5.0.1\css\" />
     <Folder Include="MEDICAL STORE\plugins\greensock\" />
     <Folder Include="MEDICAL STORE\plugins\scrollmagic\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -54,7 +54,7 @@ namespace MedicalStore.Controllers
                         Session["accessToken"] = accessTokenResult.access_token;
                         if(AuthorizationHelper.GetUserInfo().RoleName == "Admin")
                         {
-                            return RedirectToAction("AddProduct", "Product");
+                            return RedirectToAction("AdminDashBoard", "Admin");
                         }
                         return RedirectToAction("Index", "Home");
                     }
@@ -111,7 +111,7 @@ namespace MedicalStore.Controllers
                         Session["accessToken"] = accessTokenContent.access_token;
                         if (AuthorizationHelper.GetUserInfo().RoleName == "Admin")
                         {
-                            return RedirectToAction("AddProduct", "Product");
+                            return RedirectToAction("AdminDashBoard", "Admin");
                         }
 
                         return RedirectToAction("Index", "Home");
