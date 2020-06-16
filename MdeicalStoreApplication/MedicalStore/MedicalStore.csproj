@@ -3867,7 +3867,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Categories\AllCategories.cshtml" />
-    <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="Views\Admin\AdminDashBoard.cshtml" />
     <Content Include="Views\Admin\Products.cshtml" />
     <None Include="Web.Debug.config">
@@ -3882,6 +3881,7 @@
     <Folder Include="MEDICAL STORE\plugins\fontawesome-free-5.0.1\css\" />
     <Folder Include="MEDICAL STORE\plugins\greensock\" />
     <Folder Include="MEDICAL STORE\plugins\scrollmagic\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
