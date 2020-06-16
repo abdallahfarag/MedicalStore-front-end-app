@@ -14,6 +14,7 @@ namespace MedicalStore.Models
 
         [Required(ErrorMessage ="Product Name is mandatory")]
         [DisplayName("Product Name")]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Description Name is mandatory")]
@@ -23,7 +24,7 @@ namespace MedicalStore.Models
         [Range(0 ,100000)]
         public int QuantityInStock { get; set; }
 
-        [Required]
+        
         public string Image { get; set; }
 
         public decimal Price { get; set; }
