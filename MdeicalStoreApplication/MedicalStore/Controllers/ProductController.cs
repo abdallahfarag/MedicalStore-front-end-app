@@ -12,12 +12,12 @@ namespace MedicalStore.Controllers
 {
     public class ProductController : Controller
     {
-        //[HttpGet]
-        //public ActionResult AddProduct()
-        //{
+        [HttpGet]
+        public ActionResult Search()
+        {
 
-        //    return View();
-        //}
+            return PartialView();
+        }
 
         [HttpPost]
         public ActionResult AddProduct(ProductViewModel productViewModel, HttpPostedFileBase prodImg)
@@ -42,7 +42,7 @@ namespace MedicalStore.Controllers
                 var response = client.PostAsJsonAsync("api/Products", productViewModel).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("AdminDashBoard", "Admin");
                 }
             }
             return View();
