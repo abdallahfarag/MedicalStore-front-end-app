@@ -19,6 +19,8 @@
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/shop_styles.css" rel="stylesheet" />
     <link href="~/Content/shop_responsive.css" rel="stylesheet" />
+    <link href="~/Content/product_styles.css" rel="stylesheet" />
+    <link href="~/Content/product_responsive.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -146,7 +148,8 @@
                                 <div class="main_nav_menu ml-auto">
                                     <ul class="standard_dropdown main_nav_dropdown">
                                         <li>
-                                            <a href="#">Home</a>
+                                            @Html.ActionLink("Home", "Index", "Home")
+                                            @*<a href="#">Home</a>*@
                                         </li>
                                         <li class="hassubs">
                                             @Html.ActionLink("Shop", "Shop", "Shop")

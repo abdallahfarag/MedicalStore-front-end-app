@@ -22,18 +22,19 @@ namespace MedicalStore.Controllers
         [HttpPost]
         public ActionResult AddProduct(ProductViewModel productViewModel, HttpPostedFileBase prodImg)
         {
-            #region Convert image to string
-            //string theFileName = Path.GetFileName(prodImg.FileName);
-            byte[] thePictureAsBytes = new byte[prodImg.ContentLength];
-            using (BinaryReader theReader = new BinaryReader(prodImg.InputStream))
-            {
-                thePictureAsBytes = theReader.ReadBytes(prodImg.ContentLength);
-            }
-            string thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
-            #endregion
+           
+                #region Convert image to string
+                //string theFileName = Path.GetFileName(prodImg.FileName);
+                byte[] thePictureAsBytes = new byte[prodImg.ContentLength];
+                using (BinaryReader theReader = new BinaryReader(prodImg.InputStream))
+                {
+                    thePictureAsBytes = theReader.ReadBytes(prodImg.ContentLength);
+                }
+                string thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
+                #endregion
 
-            productViewModel.Image = thePictureDataAsString;
 
+                productViewModel.Image = thePictureDataAsString;
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44358/");
@@ -45,6 +46,7 @@ namespace MedicalStore.Controllers
                     return RedirectToAction("AdminDashBoard", "Admin");
                 }
             }
+            
             return View();
         }
     }

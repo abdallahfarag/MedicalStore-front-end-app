@@ -3737,8 +3737,8 @@
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\webfonts\fa-regular-400.svg" />
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.svg" />
     <Content Include="Content\main_styles.css" />
-    <Content Include="MEDICAL STORE\styles\product_responsive.css" />
-    <Content Include="MEDICAL STORE\styles\product_styles.css" />
+    <Content Include="Content\product_responsive.css" />
+    <Content Include="Content\product_styles.css" />
     <Content Include="MEDICAL STORE\styles\regular_responsive.css" />
     <Content Include="MEDICAL STORE\styles\regular_styles.css" />
     <Content Include="Content\responsive.css" />
@@ -3872,9 +3872,10 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Categories\AllCategories.cshtml" />
     <Content Include="Views\Admin\AdminDashBoard.cshtml" />
-    <Content Include="Views\Admin\Products.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Shop\Shop.cshtml" />
+    <Content Include="Views\Shop\ProductDetails.cshtml" />
+    <Content Include="Views\Admin\Products.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
