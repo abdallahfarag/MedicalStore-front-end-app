@@ -7,13 +7,27 @@
 /* admin side */
 .admin-side {
     background-image: linear-gradient(#6c5ce7, #a29bfe);
-    height: 100vh;
+    height: 700px;
     width: 20%;
     float: left;
     overflow: hidden;
     position: relative;
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
+    .admin-side ul li{
+        display:inline-block;
+        margin-left:10px;
+    }
+    .admin-side ul button {
+        padding: 2px 7px;
+        outline: none;
+        border: none;
+        color: #6d5de7;
+        font-weight: bold;
+        background-color: #eaecec;
+        letter-spacing: 1.5px;
+        border-radius: 8px;
+    }
 
     .admin-side img {
         width: 50px;

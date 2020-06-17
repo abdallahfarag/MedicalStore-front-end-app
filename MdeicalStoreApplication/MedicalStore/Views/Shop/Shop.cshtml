@@ -40,7 +40,7 @@
             @foreach (var item in Model)
             {
                 <!-- Product Item -->
-                <div class="product_item" style="margin-left:10px">
+                <div class="product_item">
                     <a href="@Url.Action("ProductDetails","Shop",routeValues:new { id = item.Id})">
                         <div class="over-v"><i class="fas fa-eye"> </i></div>
                     </a>
