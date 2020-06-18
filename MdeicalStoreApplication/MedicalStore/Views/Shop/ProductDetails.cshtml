@@ -1,6 +1,8 @@
-﻿
+﻿@model CartViewModel
 @{
     ViewBag.Title = "ProductDetails";
+    var prdct = ViewBag.prod as ProductViewModel;
+    var prodQuantityInStock = prdct.QuantityInStock;
 }
 
 
@@ -12,39 +14,40 @@
 
             <!-- Selected Image -->
             <div class="col-lg-5 order-lg-2 order-1">
-                <div class="image_selected"><img src="~/MEDICAL STORE/images/" alt=""></div>
+                <div class="image_selected"><img src="data:image/png;base64,@prdct.Image" alt=""></div>
             </div>
 
             <!-- Description -->
             <div class="col-lg-5 order-3">
                 <div class="product_description">
-                    <div class="product_category">Laptops</div>
-                    <div class="product_name">MacBook Air 13</div>
+                    <div class="product_category">@ViewBag.catName </div>
+                    <div class="product_name">@prdct.Name</div>
                     <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                    <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
+                    <div class="product_text"><p>@prdct.Description .</p></div>
                     <div class="order_info d-flex flex-row">
-                        <form action="#">
+                        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
                             <div class="clearfix" style="z-index: 1000;">
-
+                                @Html.HiddenFor(item => item.UserId)
+                                @Html.HiddenFor(item => item.ProductId)
                                 <!-- Product Quantity -->
                                 <div class="product_quantity clearfix">
                                     <span>Quantity: </span>
-                                    <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+                                    @Html.TextBoxFor(i => i.Quantity, htmlAttributes: new { id = "quantity_input", pattern = "[0-9]*", @Value = 1 })
                                     <div class="quantity_buttons">
                                         <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
                                         <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
                                     </div>
                                 </div>
-
-
+                                @Html.ValidationMessageFor(i => i.Quantity, "", htmlAttributes: new { @class = "text-danger"})
+                                <span id="quantityError" style="color:red;" ></span>
                             </div>
 
-                            <div class="product_price">0</div>
+                            <div class="product_price">@prdct.Price LE/Piece</div>
                             <div class="button_container">
-                                <button type="button" class="button cart_button">Add to Cart</button>
+                                <button type="submit" class="button cart_button">Add to Cart</button>
                             </div>
-
-                        </form>
+                        }
                     </div>
                 </div>
             </div>
@@ -53,3 +56,22 @@
     </div>
 </div>
 
+@section Scripts{
+    
+    <script>
+        var qntyInStock = @prodQuantityInStock;
+
+        $("#quantity_input").keyup(function () {
+            if ($("#quantity_input").val() > parseInt(qntyInStock)) {
+                $("#quantityError").show();
+                $("#quantityError").text('The avilable quantity is ' + qntyInStock);
+                $('#quantityError').css('color', 'red')
+                $("#quantity_input").val(1);
+            }
+            else {
+                $("#quantityError").hide();
+            }
+        });
+
+    </script> 
+} 

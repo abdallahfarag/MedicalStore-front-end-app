@@ -13,7 +13,8 @@ namespace MedicalStore.Models
 
         public int ProductId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please determine the quantity")]
+        [Range(1 ,int.MaxValue ,ErrorMessage ="Quantity must be greater than 0")]
         public int Quantity { get; set; }
 
       
