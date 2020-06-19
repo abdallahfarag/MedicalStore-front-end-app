@@ -120,11 +120,17 @@
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
                                             <i class="fas fa-cart-arrow-down" style="font-size: 35px;"></i>
-                                            <div class="cart_count"><span>0</span></div>
+                                            @if (AuthorizationHelper.GetUserInfo() is null)
+                                            {
+                                                <div class="cart_count"><span>0</span></div>
+                                            }
+                                            else
+                                            {
+                                                @Html.Action("CartCounter", "Cart")
+                                            }
                                         </div>
                                         <div class="cart_content">
-                                            <div class="cart_text">@*<a href="#">Cart</a>*@@Html.ActionLink("Cart", "CartContent", "Cart")</div>
-                                            @*<div class="cart_price">0</div>*@
+                                            <div class="cart_text">@Html.ActionLink("Cart", "CartContent", "Cart")</div>
                                         </div>
                                     </div>
                                 </div>

@@ -33,5 +33,11 @@ namespace MedicalStore.Controllers
                 return PartialView();
             }
         }
+
+        [HttpGet]
+        public ActionResult Categories()
+        {
+            return PartialView();
+        }
     }
 }

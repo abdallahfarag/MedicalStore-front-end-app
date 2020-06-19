@@ -15,7 +15,7 @@ namespace MedicalStore.Controllers
         [HttpPost]
         public ActionResult AddToCart(CartViewModel cart)
         {
-            if(cart.UserId is null)
+            if(AuthorizationHelper.GetUserInfo() is null)
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -33,6 +33,7 @@ namespace MedicalStore.Controllers
                         {
                             var prodEdited = prod.Content.ReadAsAsync<ProductViewModel>().Result;
                             prodEdited.QuantityInStock = prodEdited.QuantityInStock - cart.Quantity;
+                           // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
                             var prodEditedResponse = client.PutAsJsonAsync("api/Products", prodEdited).Result;
                             return RedirectToAction("CartContent");
                         }
@@ -47,7 +48,7 @@ namespace MedicalStore.Controllers
         {
             using(HttpClient client = new HttpClient())
             {
-                if (AuthorizationHelper.GetUserInfo().Id is null)
+                if (AuthorizationHelper.GetUserInfo() is null)
                 {
                     return RedirectToAction("Login", "Account");
                 }
@@ -69,6 +70,29 @@ namespace MedicalStore.Controllers
                 }
             }
             return RedirectToAction("Index" ,"Home");
+        }
+
+        [HttpGet]
+        public ActionResult CartCounter()
+        {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                var cartResponse = client.GetAsync($"api/Cart/CartUserItem?userId={AuthorizationHelper.GetUserInfo().Id}").Result;
+                if (cartResponse.IsSuccessStatusCode)
+                {
+                    var cart = cartResponse.Content.ReadAsAsync<List<CartViewModel>>().Result;
+                    ViewBag.counter = cart.Count();
+                    return PartialView();
+                }
+                return RedirectToAction("Index", "Home");
+
+            }
         }
     }
 }

@@ -43,9 +43,12 @@
                                 <span id="quantityError" style="color:red;" ></span>
                             </div>
 
-                            <div class="product_price">@prdct.Price LE/Piece</div>
+                            <div class="product_price">@prdct.Price.ToString("0.#####") LE/Piece</div>
                             <div class="button_container">
-                                <button type="submit" class="button cart_button">Add to Cart</button>
+                                @if(prdct.QuantityInStock >= 1)
+                                {
+                                    <button type="submit" class="button cart_button">Add to Cart</button>
+                                }
                             </div>
                         }
                     </div>

@@ -52,16 +52,59 @@ namespace MedicalStore.Controllers
                         Session["username"] = userInfo.UserName;
                         Session["userinfo"] = userInfo;
                         Session["accessToken"] = accessTokenResult.access_token;
-                        if(AuthorizationHelper.GetUserInfo().RoleName == "Admin")
-                        {
-                            return RedirectToAction("AdminDashBoard", "Admin");
-                        }
+                        //if(AuthorizationHelper.GetUserInfo().RoleName == "Admin")
+                        //{
+                        //    return RedirectToAction("AdminDashBoard", "Admin");
+                        //}
                         return RedirectToAction("Index", "Home");
                     }
                 }
             }
             return View();
         }
+
+
+        [HttpPost]
+        public ActionResult RegisterAdmin(RegisterViewModel registerViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                var responseMsg = client.PostAsJsonAsync("api/Account/RegisterAdmin", registerViewModel).Result;
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                    HttpContent content = new FormUrlEncodedContent(new[]
+                {
+                    new KeyValuePair<string, string>("grant_type", "password"),
+                    new KeyValuePair<string, string>("username", registerViewModel.UserName),
+                    new KeyValuePair<string, string>("password", registerViewModel.Password)
+                });
+                    var result = client.PostAsync("token", content).Result;
+                    var accessTokenResult = result.Content.ReadAsAsync<TokenViewModel>().Result;
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessTokenResult.access_token);
+                    var userInfoResponseMsg = client.GetAsync("api/Account/UserInfo").Result;
+                    if (userInfoResponseMsg.IsSuccessStatusCode)
+                    {
+                        var userInfo = userInfoResponseMsg.Content.ReadAsAsync<UserInfoViewModel>().Result;
+
+                        Session["id"] = userInfo.Id;
+                        Session["username"] = userInfo.UserName;
+                        Session["userinfo"] = userInfo;
+                        Session["accessToken"] = accessTokenResult.access_token;
+                        //if(AuthorizationHelper.GetUserInfo().RoleName == "Admin")
+                        //{
+                        //    return RedirectToAction("AdminDashBoard", "Admin");
+                        //}
+                        return RedirectToAction("AdminDashBoard", "Admin");
+                    }
+                }
+            }
+            return RedirectToAction("AdminDashBoard", "Admin");
+        }
+
+
 
         [HttpGet]
         public ActionResult Login()
@@ -126,7 +169,7 @@ namespace MedicalStore.Controllers
             Session["id"] = null;
             Session["username"] = null;
             Session["accessToken"] = null;
-
+            Session["userinfo"] = null;
             return RedirectToAction("Index", "Home");
         }
     }

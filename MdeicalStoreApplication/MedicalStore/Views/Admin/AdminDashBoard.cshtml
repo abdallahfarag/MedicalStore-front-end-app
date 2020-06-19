@@ -1,6 +1,7 @@
-﻿
+﻿@model RegisterViewModel
 @{
     Layout = null;
+    var catViewModel = new CategoryViewModel();
 }
 
 
@@ -31,40 +32,46 @@
             <h3 class="categorie-add">Categores</h3>
         </div>
         <ul>
-            <li><button class="logout">Logout</button></li>
+            <li><button class="logout">@Html.ActionLink("Logout", "Logout", "Account")</button></li>
         </ul>
     </section>
     <!-- //////// -->
     <section class="content-side">
         <div class="main">
             <div class="form">
-                <input type="text" name="user" placeholder="Username" autocomplete="off">
-                <input type="email" name="mail" placeholder="email" autocomplete="off">
-                <input type="password" name="pass" placeholder="password">
-                <input type="password" name="pass" placeholder="confirm password">
+                @*<input type="text" name="user" placeholder="Username" autocomplete="off">
+        <input type="email" name="mail" placeholder="email" autocomplete="off">
+        <input type="password" name="pass" placeholder="password">
+        <input type="password" name="pass" placeholder="confirm password">
+        <button class="btn-1"> Add</button>*@
 
-                @*<input type="checkbox" name="" id="">*@
-                @*<label for="checkbox">I Agree To The Terms</label>*@
-                <button class="btn-1"> Add</button>
-            </div>
+                @using (Html.BeginForm("RegisterAdmin", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.TextBoxFor(i => i.UserName, htmlAttributes: new { name = "user", placeholder = "Username", autocomplete = "off" })
+                    @Html.ValidationMessageFor(i => i.UserName, "", htmlAttributes: new { @class = "text-danger" })
 
-            <div class="catig">
-                @Html.Action("Products" ,"Admin")
-            </div>
+                    @Html.EditorFor(i => i.Email, additionalViewData: new { htmlAttributes = new { name = "mail", placeholder = "Email", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(i => i.Email, "", htmlAttributes: new { @class = "text-danger" })
 
-            <!-- categores -->
-            <div class="cat">
-                <div class="desc-cat text-center">
-                    <h1>Upload New Categores</h1>
+                    @Html.EditorFor(i => i.Password, additionalViewData: new { htmlAttributes = new { name = "pass", placeholder = "Password", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(i => i.Password, "", htmlAttributes: new { @class = "text-danger" })
+
+                    @Html.EditorFor(i => i.ConfirmPassword, additionalViewData: new { htmlAttributes = new { name = "pass", placeholder = "ConfirmPassword", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(i => i.ConfirmPassword, "", htmlAttributes: new { @class = "text-danger" })
+
+                    <button type="submit" class="btn-1"> Add</button>
+                }
                 </div>
-                <form action="#" class="for">
-                    <input type="text" name="cat">
-                    <button class="btn-0">Send</button>
-                    <button class="btn-2"> Edit</button>
-                    <button class="btn-3"> Delete</button>
-                </form>
+
+                <div class="catig">
+                    @Html.Action("Products", "Admin")
+                </div>
+
+                <!-- categores -->
+                <div class="cat">
+                   @Html.Action("Categories", "Admin")
+                </div>
             </div>
-        </div>
     </section>
     <!-- script files -->
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>

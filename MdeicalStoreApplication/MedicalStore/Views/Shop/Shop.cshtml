@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<MedicalStore.Models.ProductViewModel>
+﻿@model  IEnumerable<ProductViewModel>
 @{
     ViewBag.Title = "Shop";
 }
@@ -15,7 +15,7 @@
                 <div class="sidebar_title">Categories</div>
                 <ul class="sidebar_categories">
 
-                    @foreach (var item in ViewBag.cats as IEnumerable<MedicalStore.Models.CategoryViewModel>)
+                    @foreach (var item in ViewBag.cats as IEnumerable<CategoryViewModel>)
                     {
                         <li>@Html.ActionLink(item.Name ,"ViewCategoryProducts" ,"Shop",htmlAttributes:new { }, routeValues : new { id = item.Id})</li>
                     }
@@ -39,18 +39,40 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                <!-- Product Item -->
-                <div class="product_item">
-                    <a href="@Url.Action("ProductDetails","Shop",routeValues:new { id = item.Id})">
-                        <div class="over-v"><i class="fas fa-eye"> </i></div>
-                    </a>
-                    <div class="product_border"></div>
-                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="data:image/png;base64,@item.Image" alt=""></div>
-                    <div class="product_content">
-                        <div class="product_price">@item.Price LE</div>
-                        <div class="product_name"><div><a tabindex="0">@item.Name</a></div></div>
+                if (item.QuantityInStock > 0)
+                {
+                    <!-- Product Item -->
+                    <div class="product_item">
+                        <a href="@Url.Action("ProductDetails","Shop",routeValues:new { id = item.Id})">
+                            <div class="over-v"><i class="fas fa-eye"> </i></div>
+                        </a>
+                        <div class="product_border"></div>
+                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="data:image/png;base64,@item.Image" alt=""></div>
+                        <div class="product_content">
+                            <div class="product_price">@item.Price.ToString("0.#####") LE</div>
+                            <div class="product_name"><div><a tabindex="0">@item.Name</a></div></div>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <!-- Product Item -->
+        <div class="product_item discount">">
+            <a href="@Url.Action("ProductDetails","Shop",routeValues:new { id = item.Id})">
+                <div class="over-v"><i class="fas fa-eye"> </i></div>
+            </a>
+            <div class="product_border"></div>
+            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="data:image/png;base64,@item.Image" alt=""></div>
+            <div class="product_content">
+                <div class="product_price">@item.Price.ToString("0.#####") LE</div>
+                <div class="product_name"><div><a tabindex="0">@item.Name</a></div></div>
+            </div>
+            <ul class="product_marks">
+                <li class="product_mark product_discount">Not available now</li>
+                <li class="product_mark product_new">new</li>
+            </ul>
+        </div>
+                }
             }
         </div>
 

@@ -3844,6 +3844,7 @@
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\OrderItemsViewModel.cs" />
+    <Compile Include="Models\Orderstatus.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
@@ -3878,6 +3879,8 @@
     <Content Include="Views\Shop\ProductDetails.cshtml" />
     <Content Include="Views\Admin\Products.cshtml" />
     <Content Include="Views\Cart\CartContent.cshtml" />
+    <Content Include="Views\Cart\CartCounter.cshtml" />
+    <Content Include="Views\Admin\Categories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
