@@ -119,6 +119,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\done.css" />
     <Content Include="Content\Error.css" />
     <Content Include="Content\fontawesome-free-5.0.1\css\fontawesome-all.css" />
     <Content Include="Content\fontawesome-free-5.0.1\webfonts\fa-brands-400.svg" />
@@ -1860,6 +1861,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\done.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -3884,6 +3886,7 @@
     <Content Include="Views\Cart\CartCounter.cshtml" />
     <Content Include="Views\Admin\Categories.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Order\OrderInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3898,7 +3901,6 @@
     <Folder Include="MEDICAL STORE\plugins\Isotope\" />
     <Folder Include="MEDICAL STORE\plugins\parallax-js-master\" />
     <Folder Include="MEDICAL STORE\plugins\scrollmagic\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

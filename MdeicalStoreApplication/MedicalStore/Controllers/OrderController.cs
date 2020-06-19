@@ -8,6 +8,10 @@ namespace MedicalStore.Controllers
 {
     public class OrderController : Controller
     {
-        
+        [HttpGet]
+        public ActionResult OrderInfo()
+        {
+            return View();
+        }
     }
 }
