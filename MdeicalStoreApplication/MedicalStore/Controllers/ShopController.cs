@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,8 +13,9 @@ namespace MedicalStore.Controllers
     public class ShopController : Controller
     {
         [HttpGet]
-        public ActionResult Shop()
+        public ActionResult Shop(CategoryViewModel category)
         {
+            
             using(HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44358/");
@@ -25,6 +27,12 @@ namespace MedicalStore.Controllers
                     var categories = categoriesResponse.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
                     var products = productsResponse.Content.ReadAsAsync<List<ProductViewModel>>().Result;
                     ViewBag.cats = categories;
+                    if (category.Id != 0 && category.Name != null)
+                    {
+                        var catProducts = products.Where(i => i.CategoryId == category.Id);
+                        return View(catProducts);
+                    }
+                   
                     return View(products);
                 }
             }
@@ -58,5 +66,27 @@ namespace MedicalStore.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult ViewCategoryProducts(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                if (AuthorizationHelper.GetUserInfo() != null)
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                }
+                var response = client.GetAsync($"api/Categories/{id}").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var category = response.Content.ReadAsAsync<CategoryViewModel>().Result;
+                   
+                    return RedirectToAction("shop", "shop", category);
+                }
+            }
+            return RedirectToAction("shop", "shop");
+        }
+
     }
 }
