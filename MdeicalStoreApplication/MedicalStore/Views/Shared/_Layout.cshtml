@@ -116,24 +116,30 @@
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
 
                                 <!-- Cart -->
-                                <div class="cart">
-                                    <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                        <div class="cart_icon">
-                                            <i class="fas fa-cart-arrow-down" style="font-size: 35px;"></i>
-                                            @if (AuthorizationHelper.GetUserInfo() is null)
-                                            {
-                                                <div class="cart_count"><span>0</span></div>
-                                            }
-                                            else
-                                            {
-                                                @Html.Action("CartCounter", "Cart")
-                                            }
-                                        </div>
-                                        <div class="cart_content">
-                                            <div class="cart_text">@Html.ActionLink("Cart", "CartContent", "Cart")</div>
+                                @if (Session["id"] != null)
+                                {
+                                    <div class="cart">
+                                        <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                            <div class="cart_icon">
+                                                <i class="fas fa-cart-arrow-down" style="font-size: 35px;"></i>
+                                                @if (AuthorizationHelper.GetUserInfo() is null)
+                                                {
+                                                    <div class="cart_count"><span>0</span></div>
+                                                }
+                                                else
+                                                {
+                                                    @Html.Action("CartCounter", "Cart")
+                                                }
+                                            </div>
+                                            <div class="cart_content">
+                                                <div class="cart_text">@Html.ActionLink("Cart", "CartContent", "Cart")</div>
+                                            </div>
+                                            <div class="cart_content">
+                                                <div class="cart_text">@Html.ActionLink("Orders", "OrdersContent", "Orders")</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -207,7 +213,7 @@
                                     </li>
 
                                     <li class="page_menu_item">
-                                        <a href="blog.html">blog</i></a>
+                                        <a href="blog.html">blog</a>
                                     </li>
                                     <li class="page_menu_item">
                                         <a href="contact.html">contact</a>

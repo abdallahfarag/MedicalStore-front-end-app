@@ -15,5 +15,15 @@ namespace MedicalStore.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Error()
+        {
+            Session["id"] = null;
+            Session["username"] = null;
+            Session["accessToken"] = null;
+            Session["userinfo"] = null;
+            return View();
+        }
     }
 }

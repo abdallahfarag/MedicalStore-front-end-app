@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalStore.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -19,7 +20,12 @@ namespace MedicalStore.Models
         public DateTime DateAdded { get; set; }
         [DisplayName("Delivered")]
         [Required]
-        public bool IsDelivered { get; set; }
+        public Orderstatus OrderStatus { get; set; }
+        [Required]
+        public string OrderAddress { get; set; }
+        [Phone]
+        [Required]
+        public string ContactPhone { get; set; }
         [DisplayName("Feedback")]
         public string FeedBack { get; set; }
         [Required]
