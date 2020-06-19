@@ -14,7 +14,7 @@
         {
             <li>
                 @*<a href="#">*@
-                @Html.ActionLink($"{item.Name}" , "Category", "Shop")
+                @Html.ActionLink($"{item.Name}" , $"ViewCategoryProducts/{item.Id}", "Shop")
                    
                    
                 @*</a>*@
