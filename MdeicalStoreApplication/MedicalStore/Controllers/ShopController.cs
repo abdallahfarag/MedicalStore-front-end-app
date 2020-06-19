@@ -28,7 +28,8 @@ namespace MedicalStore.Controllers
                     return View(products);
                 }
             }
-            return RedirectToAction("Index" ,"Home");
+            return RedirectToAction("Error", "Home");
+
         }
 
 
@@ -56,7 +57,8 @@ namespace MedicalStore.Controllers
                     return View(cart);
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Error", "Home");
+
         }
     }
 }

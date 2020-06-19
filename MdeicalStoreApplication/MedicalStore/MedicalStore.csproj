@@ -119,6 +119,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Error.css" />
     <Content Include="Content\fontawesome-free-5.0.1\css\fontawesome-all.css" />
     <Content Include="Content\fontawesome-free-5.0.1\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free-5.0.1\webfonts\fa-regular-400.svg" />
@@ -3835,6 +3836,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
@@ -3843,8 +3845,8 @@
     <Compile Include="Helpers\AuthorizationHelper.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\Enums\Orderstatus.cs" />
     <Compile Include="Models\OrderItemsViewModel.cs" />
-    <Compile Include="Models\Orderstatus.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
@@ -3881,6 +3883,7 @@
     <Content Include="Views\Cart\CartContent.cshtml" />
     <Content Include="Views\Cart\CartCounter.cshtml" />
     <Content Include="Views\Admin\Categories.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3895,6 +3898,7 @@
     <Folder Include="MEDICAL STORE\plugins\Isotope\" />
     <Folder Include="MEDICAL STORE\plugins\parallax-js-master\" />
     <Folder Include="MEDICAL STORE\plugins\scrollmagic\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

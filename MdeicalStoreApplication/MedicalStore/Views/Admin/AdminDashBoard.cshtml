@@ -32,7 +32,7 @@
             <h3 class="categorie-add">Categores</h3>
         </div>
         <ul>
-            <li><button class="logout">@Html.ActionLink("Logout", "Logout", "Account")</button></li>
+            <li><button class="logout" onclick="location.href = '@Url.Action("Logout", "Account")'">Logout</button></li>
         </ul>
     </section>
     <!-- //////// -->
@@ -69,7 +69,7 @@
 
                 <!-- categores -->
                 <div class="cat">
-                   @Html.Action("Categories", "Admin")
+                   @Html.Partial("Categories")
                 </div>
             </div>
     </section>

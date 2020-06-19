@@ -39,7 +39,8 @@ namespace MedicalStore.Controllers
                         }
                     }
                 }
-                        return View();
+                return RedirectToAction("Error", "Home");
+
             }
         }
 
@@ -69,7 +70,8 @@ namespace MedicalStore.Controllers
                     return View(cart);
                 }
             }
-            return RedirectToAction("Index" ,"Home");
+            return RedirectToAction("Error", "Home");
+
         }
 
         [HttpGet]
@@ -90,7 +92,8 @@ namespace MedicalStore.Controllers
                     ViewBag.counter = cart.Count();
                     return PartialView();
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Home");
+
 
             }
         }

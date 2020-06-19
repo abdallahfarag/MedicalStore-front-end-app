@@ -46,8 +46,9 @@ namespace MedicalStore.Controllers
                     return RedirectToAction("AdminDashBoard", "Admin");
                 }
             }
-            
-            return View();
+
+            return RedirectToAction("Error", "Home");
+
         }
     }
 }

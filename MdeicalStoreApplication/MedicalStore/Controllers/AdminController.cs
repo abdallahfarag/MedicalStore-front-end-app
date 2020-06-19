@@ -30,14 +30,11 @@ namespace MedicalStore.Controllers
                     return PartialView();
 
                 }
-                return PartialView();
+                return RedirectToAction("Error", "Home");
+
             }
         }
 
-        [HttpGet]
-        public ActionResult Categories()
-        {
-            return PartialView();
-        }
+       
     }
 }
