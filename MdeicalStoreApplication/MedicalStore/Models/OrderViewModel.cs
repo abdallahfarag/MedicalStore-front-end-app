@@ -18,15 +18,17 @@ namespace MedicalStore.Models
         [DisplayName("Date added")]
         [DataType(DataType.Date)]
         public DateTime DateAdded { get; set; }
-        [DisplayName("Delivered")]
         [Required]
+        [DisplayName("Order status")]
         public Orderstatus OrderStatus { get; set; }
         [Required]
+        [DisplayName("Order address*")]
         public string OrderAddress { get; set; }
         [Phone]
         [Required]
+        [DisplayName("Phone*")]
         public string ContactPhone { get; set; }
-        [DisplayName("Feedback")]
+        [DisplayName("FeedBack(Optional)*")]
         public string FeedBack { get; set; }
         [Required]
         public string UserId { get; set; }

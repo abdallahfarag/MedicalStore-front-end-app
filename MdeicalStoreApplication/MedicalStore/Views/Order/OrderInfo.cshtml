@@ -1,4 +1,4 @@
-﻿
+﻿@model OrderViewModel
 @{
     Layout = null;
 }
@@ -17,12 +17,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h2>Medecal Store</h2>
+                    <h2>Medical Store</h2>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <ul>
-                        <li><button>Home</button></li>
-                        <li><button>Cart</button></li>
+                        <li><button onclick="location.href='@Url.Action("Index" ,"Home")'">Home</button></li>
+                        <li><button onclick="location.href='@Url.Action("CartContent" ,"Cart")'">Cart</button></li>
                     </ul>
                 </div>
             </div>
@@ -34,16 +34,23 @@
             <div class="main-data col-md-12 col-xs-12">
                 <!-- castumer data -->
                 <div class="c-data">
-                    <h2 class="des-data">Add an Address</h2>
-                    <form action="#" name="mayform">
-                        <label for="city">Address*</label>
-                        <input type="text" name="city" id="city" required />
-                        <label for="phone">Phone*</label>
-                        <input type="number" name="phone" id="phone" required />
-                        <label for="">Enter More Informtion For Easy Communication (Optional)</label>
-                        <textarea name="" id="" cols="30" rows="5"></textarea>
+                    <h2 class="des-data">Add order information</h2>
+                    @using (Html.BeginForm("MakeOrder", "Order", FormMethod.Post, new { name = "mayform", enctype = "multipart/from-data" }))
+                    {
+                        @Html.LabelFor(i => i.OrderAddress)
+                        @Html.TextBoxFor(i => i.OrderAddress, new { name = "city", id = "city" })
+                        @Html.ValidationMessageFor(i => i.OrderAddress, "", new { @class = "text-danger" })
+
+                        @Html.LabelFor(i => i.ContactPhone)
+                        @Html.TextBoxFor(i => i.ContactPhone, new { name = "phone", id = "phone" })
+                        @Html.ValidationMessageFor(i => i.ContactPhone, "", new { @class = "text-danger" })
+
+                        @Html.LabelFor(i => i.FeedBack)
+                        @Html.TextAreaFor(i => i.FeedBack, new { cols = "30", rows = "5" })
+                        @Html.ValidationMessageFor(i => i.FeedBack, "", new { @class = "text-danger" })
+
                         <input type="submit" value="Next" class="next" onclick="go()" />
-                    </form>
+                    }
                 </div>
             </div>
             <div class="c-pay col-md-12 col-xs-12">
