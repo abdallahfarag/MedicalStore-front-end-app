@@ -1,4 +1,5 @@
 ﻿using MedicalStore.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,8 +16,33 @@ namespace MedicalStore.Controllers
         [HttpGet]
         public ActionResult Search()
         {
+            
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                var productsResponse = client.GetAsync("api/Products").Result;
 
-            return PartialView();
+                if (productsResponse.IsSuccessStatusCode)
+                {
+                    var products = productsResponse.Content.ReadAsAsync<List<ProductViewModel>>().Result;
+                    var searchListProductModel = new List<SearchProductViewModel>();
+
+                    foreach (var item in products)
+                    {
+                        var searchProductModel = new SearchProductViewModel();
+                        searchProductModel.Id = item.Id;
+                        searchProductModel.Name = item.Name;
+
+                        searchListProductModel.Add(searchProductModel);
+                    }
+
+                    return PartialView(searchListProductModel);
+                }
+                else
+                {
+                    return PartialView();
+                }
+            }
         }
 
         [HttpPost]
