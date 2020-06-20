@@ -3848,10 +3848,12 @@
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\Enums\Orderstatus.cs" />
+    <Compile Include="Models\Enums\PaymentMethod.cs" />
     <Compile Include="Models\OrderItemsViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\SearchProductViewModel.cs" />
     <Compile Include="Models\TokenViewModel.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

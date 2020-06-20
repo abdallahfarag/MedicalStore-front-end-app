@@ -49,6 +49,11 @@
                         @Html.TextAreaFor(i => i.FeedBack, new { cols = "30", rows = "5" })
                         @Html.ValidationMessageFor(i => i.FeedBack, "", new { @class = "text-danger" })
 
+                        @*@Html.LabelFor(i => i.PaymentMethod, new { style = "color:#fff" })*@
+                        <label for=@PaymentMethod.Cash>@PaymentMethod.Cash</label>
+                        @Html.RadioButtonFor(i => i.PaymentMethod, PaymentMethod.Cash, new { id = PaymentMethod.Cash, style = "color:#fff" })
+                        <label for=@PaymentMethod.Paypal>@PaymentMethod.Paypal</label>
+                        @Html.RadioButtonFor(i => i.PaymentMethod, PaymentMethod.Paypal, new { id = PaymentMethod.Paypal, style = "color:#fff" })
                         <input type="submit" value="Next" class="next" onclick="go()" />
                     }
                 </div>

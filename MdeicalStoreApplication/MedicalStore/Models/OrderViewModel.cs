@@ -21,6 +21,9 @@ namespace MedicalStore.Models
         [Required]
         [DisplayName("Order status")]
         public Orderstatus OrderStatus { get; set; }
+        [DisplayName("Payment Method")]
+        public PaymentMethod PaymentMethod { get; set; }
+
         [Required]
         [DisplayName("Order address*")]
         public string OrderAddress { get; set; }
