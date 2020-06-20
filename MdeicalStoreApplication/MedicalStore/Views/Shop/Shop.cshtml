@@ -14,7 +14,7 @@
             <div class="sidebar_section">
                 <div class="sidebar_title">Categories</div>
                 <ul class="sidebar_categories">
-
+                    <li>@Html.ActionLink("All", "Shop", "Shop")</li>
                     @foreach (var item in ViewBag.cats as IEnumerable<CategoryViewModel>)
                     {
                         <li>@Html.ActionLink(item.Name ,"ViewCategoryProducts" ,"Shop",htmlAttributes:new { }, routeValues : new { id = item.Id})</li>

@@ -16,16 +16,16 @@ namespace MedicalStore.Models
         [Required]
         public decimal TotalPrice { get; set; }
         [DisplayName("Date added")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime DateAdded { get; set; }
         [Required]
         [DisplayName("Order status")]
         public Orderstatus OrderStatus { get; set; }
-        [DisplayName("Payment Method")]
+        [DisplayName("Payment Method*")]
         public PaymentMethod PaymentMethod { get; set; }
 
         [Required]
-        [DisplayName("Order address*")]
+        [DisplayName("Order address in details*")]
         public string OrderAddress { get; set; }
         [Phone]
         [Required]

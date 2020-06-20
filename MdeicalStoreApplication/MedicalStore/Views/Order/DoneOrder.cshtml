@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "DoneOrder";
+    Layout = "~/Views/Order/OrderInfo.cshtml";
+}
+
+    <div class="finsh" style="display: none;">
+        <i class="far fa-check-circle"></i>
+        <p>successfully</p>
+        <div class="qq">
+            <p>Do You Wont To Buy Other Products?..</p>
+            <button onclick="location.href='@Url.Action("Shop" ,"Shop")'">Yes</button>
+            <button onclick="location.href='@Url.Action("Index" ,"Home")'">Thanks</button>
+        </div>
+    </div>
+

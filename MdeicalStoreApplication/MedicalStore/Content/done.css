@@ -49,7 +49,7 @@ body {
 }
 /* personal data */
 .c-data {
-  margin: 100px auto 0;
+  margin: 50px auto 0;
   width: 510px;
   font-weight: bold;
   background-color: #44abf3;
@@ -65,16 +65,40 @@ body {
   outline: none;
   padding: 5px;
 }
+.c-data input:nth-of-type(3), .c-data input:nth-of-type(4) {
+        color: #fff;
+        display: inline-block;
+        width: 30px;
+        height:20px;
+        vertical-align:middle;
+        margin-right:20px;
+    }
+.c-data i{
+    font-size:25px;
+    vertical-align:middle;
+    background-color:#fff;
+    text-align:center;
+    padding:0 4px;
+}
+    .c-data fa-money-bill-alt{
+        color:rgb(21,162,21)
+    }
+    .c-data fa-cc-paypal{
+        color:#0070ba;
+    }
+    #paymentlbl {
+        display: block;
+    }
 .c-data input:last-child {
-  width: 100px;
-  padding: 3px;
-  border-radius: 10px;
-  outline: none;
-  border: none;
-  font-weight: bold;
-  color: #44abf3;
-  letter-spacing: 3.5px;
-  transition: all 0.5s ease-in-out;
+    width: 100px;
+    padding: 3px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    color: #44abf3;
+    letter-spacing: 3.5px;
+    transition: all 0.5s ease-in-out;
 }
 .c-data input:last-child:hover {
   width: 120px;

@@ -1,4 +1,4 @@
-﻿@model OrderViewModel
+﻿
 @{
     Layout = null;
 }
@@ -33,59 +33,17 @@
         <div class="row">
             <div class="main-data col-md-12 col-xs-12">
                 <!-- castumer data -->
-                <div class="c-data">
-                    <h2 class="des-data">Add order information</h2>
-                    @using (Html.BeginForm("MakeOrder", "Order", FormMethod.Post, new { name = "mayform", enctype = "multipart/from-data" }))
-                    {
-                        @Html.LabelFor(i => i.OrderAddress)
-                        @Html.TextBoxFor(i => i.OrderAddress, new { name = "city", id = "city" })
-                        @Html.ValidationMessageFor(i => i.OrderAddress, "", new { @class = "text-danger" })
-
-                        @Html.LabelFor(i => i.ContactPhone)
-                        @Html.TextBoxFor(i => i.ContactPhone, new { name = "phone", id = "phone" })
-                        @Html.ValidationMessageFor(i => i.ContactPhone, "", new { @class = "text-danger" })
-
-                        @Html.LabelFor(i => i.FeedBack)
-                        @Html.TextAreaFor(i => i.FeedBack, new { cols = "30", rows = "5" })
-                        @Html.ValidationMessageFor(i => i.FeedBack, "", new { @class = "text-danger" })
-
-                        @*@Html.LabelFor(i => i.PaymentMethod, new { style = "color:#fff" })*@
-                        <label for=@PaymentMethod.Cash>@PaymentMethod.Cash</label>
-                        @Html.RadioButtonFor(i => i.PaymentMethod, PaymentMethod.Cash, new { id = PaymentMethod.Cash, style = "color:#fff" })
-                        <label for=@PaymentMethod.Paypal>@PaymentMethod.Paypal</label>
-                        @Html.RadioButtonFor(i => i.PaymentMethod, PaymentMethod.Paypal, new { id = PaymentMethod.Paypal, style = "color:#fff" })
-                        <input type="submit" value="Next" class="next" onclick="go()" />
-                    }
-                </div>
+                @RenderBody()
             </div>
-            <div class="c-pay col-md-12 col-xs-12">
-                <div class="p-data" style="display: none;">
-                    <h1>Payment Method</h1>
-                    <div class="first-img">
-                        <a href="#">
-                            <img src="cash.png" alt="" srcset="" onclick="cash()" />
-                        </a>
-                        <a href="#">
-                            <img src="paypal.png" alt="" srcset="" />
-                        </a>
-                    </div>
-                </div>
-                <div class="finsh" style="display: none;">
-                    <i class="far fa-check-circle"></i>
-                    <p>successfully</p>
-                    <div class="qq">
-                        <p>Do You Wont To Buy Other Products?..</p>
-                        <button>Yes</button>
-                        <button>Thanks</button>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 
     <!-- scripts -->
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Content/fontawesome-free-5.13.0-web/js/all.min.js"></script>
     <script src="~/Scripts/done.js"></script>
 </body>

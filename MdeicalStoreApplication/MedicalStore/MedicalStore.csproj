@@ -1758,6 +1758,7 @@
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.svg" />
     <Content Include="Content\form.css" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\Order.css" />
     <Content Include="Content\shop_styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\1.jpg" />
@@ -3889,6 +3890,10 @@
     <Content Include="Views\Admin\Categories.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Order\OrderInfo.cshtml" />
+    <Content Include="Views\Order\OrderData.cshtml" />
+    <Content Include="Views\Order\DoneOrder.cshtml" />
+    <Content Include="Views\Order\OrdersContent.cshtml" />
+    <Content Include="Views\Order\OrderDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
