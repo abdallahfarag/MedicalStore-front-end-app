@@ -28,14 +28,14 @@ namespace MedicalStore.Controllers
                         client.BaseAddress = new Uri("https://localhost:44358/");
                         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
                         var cartRespone = client.PostAsJsonAsync("api/Cart/CartItem", cart).Result;
-                        var prod = client.GetAsync($"api/Products/{cart.ProductId}").Result;
-                        if (cartRespone.IsSuccessStatusCode && prod.IsSuccessStatusCode)
+                       // var prod = client.GetAsync($"api/Products/{cart.ProductId}").Result;
+                        if (cartRespone.IsSuccessStatusCode/* && prod.IsSuccessStatusCode*/)
                         {
-                            var prodEdited = prod.Content.ReadAsAsync<ProductViewModel>().Result;
-                            prodEdited.QuantityInStock = prodEdited.QuantityInStock - cart.Quantity;
+                           // var prodEdited = prod.Content.ReadAsAsync<ProductViewModel>().Result;
+                           // prodEdited.QuantityInStock = prodEdited.QuantityInStock - cart.Quantity;
                            // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
-                            var prodEditedResponse = client.PutAsJsonAsync("api/Products", prodEdited).Result;
-                            return RedirectToAction("CartContent");
+                           // var prodEditedResponse = client.PutAsJsonAsync("api/Products", prodEdited).Result;
+                            return RedirectToAction("Cart");
                         }
                     }
                 }
@@ -43,6 +43,13 @@ namespace MedicalStore.Controllers
 
             }
         }
+
+        [HttpGet]
+        public ActionResult Cart()
+        {
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult CartContent()
@@ -67,12 +74,105 @@ namespace MedicalStore.Controllers
                         cartProducts.Add(products.Find(i => i.Id == item.ProductId));
                     }
                     ViewBag.cartProducts = cartProducts;
-                    return View(cart);
+                    return PartialView(cart);
                 }
             }
             return RedirectToAction("Error", "Home");
 
         }
+        [HttpGet]
+        public ActionResult EditCart(int id)
+        {
+            if(AuthorizationHelper.GetUserInfo() is null)
+            {
+                RedirectToAction("Login", "Home");
+            }
+            using(HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                var cartResponse = client.GetAsync($"api/Cart/CartUserItem?userId={AuthorizationHelper.GetUserInfo().Id}").Result;
+                if (cartResponse.IsSuccessStatusCode)
+                {
+                    var cart = cartResponse.Content.ReadAsAsync<List<CartViewModel>>().Result;
+                    var carItemEdit = cart.Find(ww => ww.ProductId == id);
+                    Session["cartLastQuantity"] = carItemEdit.Quantity;
+                    return PartialView(carItemEdit);
+                }
+
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditCart(CartViewModel cart)
+        {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                RedirectToAction("Login", "Home");
+            }
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                client.Timeout = TimeSpan.FromMinutes(30);
+                var carEditResponse = client.PutAsJsonAsync("api/Cart/CartItem", cart).Result;
+                if (carEditResponse.IsSuccessStatusCode)
+                {
+                    var cartResponse = client.GetAsync($"api/Cart/CartUserItem?userId={AuthorizationHelper.GetUserInfo().Id}").Result;
+                    var productsResponse = client.GetAsync("api/Products").Result;
+                    if (cartResponse.IsSuccessStatusCode && productsResponse.IsSuccessStatusCode)
+                    {
+                        var cartContent = cartResponse.Content.ReadAsAsync<List<CartViewModel>>().Result;
+                        var products = productsResponse.Content.ReadAsAsync<List<ProductViewModel>>().Result;
+                        List<ProductViewModel> cartProducts = new List<ProductViewModel>();
+                        foreach (var item in cartContent)
+                        {
+                            cartProducts.Add(products.Find(i => i.Id == item.ProductId));
+                        }
+                        ViewBag.cartProducts = cartProducts;
+                        return PartialView("CartContent", cartContent);
+                    }
+                }
+                    return RedirectToAction("Error", "Home");
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteCart(int id)
+        {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                RedirectToAction("Login", "Home");
+            }
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                var deleteItemResponse = client.DeleteAsync($"api/Cart/CartItem?userId={AuthorizationHelper.GetUserInfo().Id}&ProductId={id}").Result;
+                if (deleteItemResponse.IsSuccessStatusCode)
+                {
+                    var cartResponse = client.GetAsync($"api/Cart/CartUserItem?userId={AuthorizationHelper.GetUserInfo().Id}").Result;
+                    var productsResponse = client.GetAsync("api/Products").Result;
+                    if (cartResponse.IsSuccessStatusCode && productsResponse.IsSuccessStatusCode)
+                    {
+                        var cartContent = cartResponse.Content.ReadAsAsync<List<CartViewModel>>().Result;
+                        var products = productsResponse.Content.ReadAsAsync<List<ProductViewModel>>().Result;
+                        List<ProductViewModel> cartProducts = new List<ProductViewModel>();
+                        foreach (var item in cartContent)
+                        {
+                            cartProducts.Add(products.Find(i => i.Id == item.ProductId));
+                        }
+                        ViewBag.cartProducts = cartProducts;
+                        return PartialView("CartContent", cartContent);
+                    }
+                }
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+
 
         [HttpGet]
         public ActionResult CartCounter()

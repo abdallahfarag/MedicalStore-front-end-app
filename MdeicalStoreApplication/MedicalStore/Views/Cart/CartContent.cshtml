@@ -1,12 +1,10 @@
 ﻿@model IEnumerable<CartViewModel>
 @{
-    ViewBag.Title = "CartContent";
+    //ViewBag.Title = "CartContent";
     var cartProds = ViewBag.cartProducts as IEnumerable<ProductViewModel>;
-    decimal orderTotal=0;
+    decimal orderTotal = 0;
 }
-
-<!-- Cart -->
-<div class="cart_section" style="border-bottom: 3px solid rgb(48, 48, 241);">
+<!-- Cart content -->
     <div class="container">
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
@@ -19,30 +17,31 @@
                     <div class="cart_items">
                         <ul class="cart_list">
                             @foreach (var item in Model)
-                                    {
-                                        var P = cartProds.SingleOrDefault(i => i.Id == item.ProductId);
-                                        <li class="cart_item clearfix">
-                                    <div class="cart_item_image"><img src="data:image/png;base64,@P.Image" alt=""></div>
-                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                        <div class="cart_item_name cart_info_col">
-                                            <div class="cart_item_title">Name</div>
-                                            <div class="cart_item_text">@P.Name</div>
-                                        </div>
-                                        <div class="cart_item_quantity cart_info_col">
-                                            <div class="cart_item_title">Quantity</div>
-                                            <div class="cart_item_text">@item.Quantity</div>
-
-                                        </div>
-                                        <div class="cart_item_price cart_info_col">
-                                            <div class="cart_item_title">Price</div>
-                                            <div class="cart_item_text">@P.Price.ToString("0.#####") LE</div>
-                                        </div>
-                                        <div class="cart_item_total cart_info_col">
-                                            <div class="cart_item_title">Total</div>
-                                            <div class="cart_item_text">@((P.Price * item.Quantity).ToString("0.#####")) LE</div>
-                                        </div>
+                            {
+                                var P = cartProds.SingleOrDefault(i => i.Id == item.ProductId);
+                            <li class="cart_item clearfix">
+                                <div class="cart_item_image"><img src="data:image/png;base64,@P.Image" alt=""></div>
+                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                    <div class="cart_item_name cart_info_col">
+                                        <div class="cart_item_title">Name</div>
+                                        <div class="cart_item_text">@P.Name</div>
                                     </div>
-                                </li>
+                                    <div class="cart_item_quantity cart_info_col">
+                                        <div class="cart_item_title">Quantity</div>
+                                        <div class="cart_item_text">@item.Quantity</div>
+
+                                    </div>
+                                    <div class="cart_item_price cart_info_col">
+                                        <div class="cart_item_title">Price</div>
+                                        <div class="cart_item_text">@P.Price.ToString("0.#####") LE</div>
+                                    </div>
+                                    <div class="cart_item_total cart_info_col">
+                                        <div class="cart_item_title">Total</div>
+                                        <div class="cart_item_text">@((P.Price * item.Quantity).ToString("0.#####")) LE</div>
+                                    </div>
+                                </div>
+                                @Ajax.ActionLink("Edit", "EditCart", "Cart", routeValues: new { id = item.ProductId }, htmlAttributes: new { @class = "btn btn-info" }, ajaxOptions: new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "editCart", InsertionMode = InsertionMode.Replace, OnSuccess = "EditToggle()" }) | @Ajax.ActionLink("Remove", "DeleteCart", "Cart", routeValues: new { id = item.ProductId }, htmlAttributes: new { @class = "btn btn-danger" }, ajaxOptions: new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "Cart", InsertionMode = InsertionMode.Replace, OnSuccess = "confirm('Sure to Remove ?')" })
+                            </li>
                                 orderTotal += P.Price * item.Quantity;
                             }
                         </ul>
@@ -64,5 +63,3 @@
             </div>
         </div>
     </div>
-</div>
-
