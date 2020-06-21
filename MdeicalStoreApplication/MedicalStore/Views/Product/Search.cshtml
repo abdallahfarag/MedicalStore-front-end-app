@@ -1,5 +1,17 @@
 ﻿@model  IEnumerable<SearchProductViewModel>
 
+
+<style>
+    .text-autocomplete {
+        position: relative;
+        top: 35px;
+        right: 269px;
+    }
+  
+</style>
+
+
+
 <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
     <div class="header_search">
         <div class="header_search_content">
@@ -12,7 +24,7 @@
                            id="myInput"
                            name="product" />
 
-                    @using (Html.BeginForm("ProductDetails", "Shop", FormMethod.Get, new { autocomplete = "off" }))
+                    @using (Html.BeginForm("ProductDetails", "Shop", FormMethod.Get, new { autocomplete = "off", id="the-form" }))
                     {
                         <input hidden name="id" id="product-id" />
                         <button type="submit"
@@ -54,6 +66,8 @@
                 if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                     /*create a DIV element for each matching element:*/
                     b = document.createElement("DIV");
+                    /* set class to the div */
+                    b.classList.add('text-autocomplete');
                     /*make the matching letters bold:*/
                     b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
                     b.innerHTML += arr[i].substr(val.length);
@@ -137,9 +151,27 @@
     for (let i = 0; i < data.length; i++) {
         productNames.push(data[i].Name);
     }
-    console.log(productNames);
+
     autocomplete(document.getElementById("myInput"), productNames);
 
+
+    function goSearch() {
+       
+    }
+
+    myInput.addEventListener("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var productId = document.querySelector('#product-id');
+            var myInput = document.querySelector('#myInput');
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].Name.includes(myInput.value)) {
+                    productId.value = data[i].Id;
+                }
+            }
+            var toSubmit = document.querySelector('#the-form');
+            toSubmit.submit();
+        }
+    })
 
     var searchBtn = document.querySelector('#search-btn');
 
@@ -154,4 +186,8 @@
         }
     })
 
+
+
 </script>
+
+
