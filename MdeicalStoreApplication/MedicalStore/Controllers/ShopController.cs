@@ -42,30 +42,41 @@ namespace MedicalStore.Controllers
 
 
         [HttpGet]
-        public ActionResult ProductDetails(int id)
+        public ActionResult ProductDetails(string id)
         {
-            using(HttpClient client = new HttpClient())
+            var chkId = int.TryParse(id, out int idValue);
+
+            if(chkId)
             {
-                client.BaseAddress = new Uri("https://localhost:44358/");
-                var productResponse = client.GetAsync($"api/Products/{id}").Result;
-                var categoriesResponse = client.GetAsync("api/Categories").Result;
-                if (productResponse.IsSuccessStatusCode && categoriesResponse.IsSuccessStatusCode)
+                using (HttpClient client = new HttpClient())
                 {
-                    var categories = categoriesResponse.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
-                    var product = productResponse.Content.ReadAsAsync<ProductViewModel>().Result;
-                    var categoryName = categories.SingleOrDefault(item => item.Id == product.CategoryId);
-                    ViewBag.catName = categoryName.Name;
-                    ViewBag.prod = product;
-                    var cart = new CartViewModel();
-                    if(AuthorizationHelper.GetUserInfo() != null)
+                    client.BaseAddress = new Uri("https://localhost:44358/");
+                    var productResponse = client.GetAsync($"api/Products/{id}").Result;
+                    var categoriesResponse = client.GetAsync("api/Categories").Result;
+                    if (productResponse.IsSuccessStatusCode && categoriesResponse.IsSuccessStatusCode)
                     {
-                        cart.UserId = AuthorizationHelper.GetUserInfo().Id;
+                        var categories = categoriesResponse.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
+                        var product = productResponse.Content.ReadAsAsync<ProductViewModel>().Result;
+                        var categoryName = categories.SingleOrDefault(item => item.Id == product.CategoryId);
+                        ViewBag.catName = categoryName.Name;
+                        ViewBag.prod = product;
+                        var cart = new CartViewModel();
+                        if (AuthorizationHelper.GetUserInfo() != null)
+                        {
+                            cart.UserId = AuthorizationHelper.GetUserInfo().Id;
+                        }
+                        cart.ProductId = product.Id;
+                        return View(cart);
                     }
-                    cart.ProductId = product.Id;
-                    return View(cart);
+                    else
+                    {
+                        return RedirectToAction("Error", "Home");
+
+                    }
                 }
             }
-            return RedirectToAction("Error", "Home");
+           
+            return RedirectToAction("NotFoundProduct", "Product");
 
         }
 

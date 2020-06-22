@@ -10,10 +10,19 @@
 
     <button type="submit" class="btn-0">Add</button>
 }
+
+@*@using (Html.BeginForm("AddCategory", "Categories", FormMethod.Post))
+{
+    @Html.TextBoxFor(c => c.Name, htmlAttributes: new { name = "cat" })
+    @Html.ValidationMessageFor(c => c.Name, "", htmlAttributes: new { @class = "text-danger" })
+
+    <button type="submit" class="btn-2"> Edit</button>
+}*@
+
 @*<form action="#" class="for">
-    <input type="text" name="cat">
-    <button class="btn-0">Send</button>
-    <button class="btn-2"> Edit</button>
-    <button class="btn-3"> Delete</button>
-</form>*@
+        <input type="text" name="cat">
+        <button class="btn-0">Send</button>
+        <button class="btn-2"> Edit</button>
+        <button class="btn-3"> Delete</button>
+    </form>*@
 
