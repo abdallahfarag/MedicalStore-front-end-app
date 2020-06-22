@@ -76,45 +76,8 @@
             </div>
 
             <!-- orders -->
-            <!-- orders -->
             <div class="order">
-                <div class="desc-cat text-center">
-                    <h1>Orders Status</h1>
-                </div>
-                <div class="order-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Order Date</th>
-                                <th>User Name</th>
-                                <th>Status</th>
-                                <th>Confirm</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1/1/2020</td>
-                                <td>Ahmed</td>
-                                <td>
-                                    <select name="" id="sel">
-                                        <option value="" selected disabled hidden>
-                                            Choose Here
-                                        </option>
-                                        <option value="">Confirmed</option>
-                                        <option value="">OnWay</option>
-                                        <option value="">Delivered</option>
-                                        <option value="">Cancelled</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <button>Change Status</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                @{Html.RenderAction("Orders", "Admin"); }
             </div>
 
         </div>
