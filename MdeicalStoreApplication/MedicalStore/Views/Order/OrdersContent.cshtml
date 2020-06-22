@@ -22,7 +22,7 @@
                                         <div class="cart_item_name cart_info_col">
                                             <div class="cart_item_title">Date</div>
                                             <div class="cart_item_text">
-                                                @item.DateAdded.ToShortDateString() @*<span class="info-span">@item.DateAdded.Hour</span>*@
+                                                @item.DateAdded.ToShortDateString() <span class="info-span">@item.DateAdded.ToShortTimeString()</span>
                                             </div>
                                         </div>
                                         <div class="cart_item_quantity cart_info_col">
