@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MedicalStore.Models.ProductViewModel>
+
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th>@Html.DisplayNameFor(aa => aa.Name)</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(aa => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UpdateProduct", "product", routeValues: new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "DeleteProduct", "product", routeValues: new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger", onclick = "return confirm('R U Sure')" })
+
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

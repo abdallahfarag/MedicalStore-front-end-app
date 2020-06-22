@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MedicalStore.Models.CategoryViewModel>
+
+<div>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                
+                @Html.ActionLink(item.Name, $"ViewCategoryProducts/{item.Id}", "shop")
+            </li>
+        }
+    </ul>
+</div>

@@ -1,4 +1,5 @@
-﻿using MedicalStore.Models;
+﻿using MedicalStore.Helpers;
+using MedicalStore.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -76,5 +77,62 @@ namespace MedicalStore.Controllers
             return RedirectToAction("Error", "Home");
 
         }
+
+        [HttpDelete]
+        public ActionResult DeleteProduct(ProductViewModel product)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+               
+                    var response = client.DeleteAsync($"api/products/{product.Id}").Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("AdminDashBoard", "Admin");
+                    }
+                
+            }
+            return RedirectToAction("Error","home");
+        }
+        [HttpGet]
+        public ActionResult UpdateProduct(int id)
+        {
+            
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+
+                var response = client.GetAsync($"api/products/{id}").Result;
+
+                if (response.IsSuccessStatusCode )
+                {
+                    var prod = response.Content.ReadAsAsync<ProductViewModel>().Result;
+
+                    return PartialView( prod);
+                }
+            }
+            return RedirectToAction("Error","home");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProduct(ProductViewModel product)
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+
+                var updatedProduct = client.PutAsJsonAsync("api/Products", product).Result;
+                if (updatedProduct.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AdminDashBoard", "Admin");
+
+                }              
+            }
+            return RedirectToAction("error", "home");
+        }
+
     }
 }
