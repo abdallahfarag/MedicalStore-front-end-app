@@ -175,12 +175,12 @@ namespace MedicalStore.Controllers
 
 
         [HttpGet]
-        public ActionResult CartCounter()
+        public /*ActionResult*/int CartCounter()
         {
-            if (AuthorizationHelper.GetUserInfo() is null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            //if (AuthorizationHelper.GetUserInfo() is null)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44358/");
@@ -190,9 +190,9 @@ namespace MedicalStore.Controllers
                 {
                     var cart = cartResponse.Content.ReadAsAsync<List<CartViewModel>>().Result;
                     ViewBag.counter = cart.Count();
-                    return PartialView();
+                    return /*PartialView()*/cart.Count();
                 }
-                return RedirectToAction("Error", "Home");
+                return /*RedirectToAction("Error", "Home")*/0;
 
 
             }

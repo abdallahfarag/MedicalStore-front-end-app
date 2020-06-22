@@ -41,10 +41,20 @@ namespace MedicalStore.Controllers
                 }
                 else
                 {
+                    // return View("NotFoundProduct");
                     return PartialView();
                 }
             }
         }
+
+
+
+        [HttpGet]
+        public ActionResult NotFoundProduct()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult AddProduct(ProductViewModel productViewModel, HttpPostedFileBase prodImg)

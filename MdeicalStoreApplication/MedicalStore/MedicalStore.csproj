@@ -3885,7 +3885,6 @@
     <Content Include="Views\Shop\Shop.cshtml" />
     <Content Include="Views\Shop\ProductDetails.cshtml" />
     <Content Include="Views\Admin\Products.cshtml" />
-    <Content Include="Views\Cart\CartCounter.cshtml" />
     <Content Include="Views\Admin\Categories.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Order\OrderInfo.cshtml" />

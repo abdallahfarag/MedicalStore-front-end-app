@@ -63,7 +63,7 @@ namespace MedicalStore.Controllers
                 {
                     var userOrders = ordersResponse.Content.ReadAsAsync<List<OrderViewModel>>().Result;
                     
-                    return View(userOrders.OrderBy(i => i.DateAdded));
+                    return View(userOrders.OrderByDescending(i => i.DateAdded));
                 }
                 return RedirectToAction("Error", "Index");
             }

@@ -51,21 +51,5 @@ namespace MedicalStore.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
-
-        [HttpGet]
-        public ActionResult CategoriesList()
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:44358/");
-                var response = client.GetAsync("api/categories").Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var cats = response.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
-                    return PartialView(cats);
-                }
-            }
-            return RedirectToAction("error", "home");
-        }
     }
 }
