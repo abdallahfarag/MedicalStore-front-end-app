@@ -47,9 +47,25 @@ namespace MedicalStore.Controllers
                     var products = response.Content.ReadAsAsync<List<ProductViewModel>>().Result;
                     return PartialView(products);
                 }
-                return RedirectToAction("Error");
+                return RedirectToAction("Error","home");
             }
         }
 
+     
+        [HttpGet]
+        public ActionResult Cats()
+        {
+            using(HttpClient client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                var response = client.GetAsync("api/categories").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var categories = response.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
+                    return PartialView(categories);
+                }
+            }
+            return RedirectToAction("error", "home");
+        }
     }
 }

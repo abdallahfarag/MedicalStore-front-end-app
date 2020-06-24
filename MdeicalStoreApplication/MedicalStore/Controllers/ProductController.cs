@@ -91,6 +91,10 @@ namespace MedicalStore.Controllers
         [HttpDelete]
         public ActionResult DeleteProduct(ProductViewModel product)
         {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("login", "account");
+            }
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44358/");
@@ -108,7 +112,10 @@ namespace MedicalStore.Controllers
         [HttpGet]
         public ActionResult UpdateProduct(int id)
         {
-            
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("login", "account");
+            }
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44358/");
@@ -128,6 +135,10 @@ namespace MedicalStore.Controllers
         [HttpPost]
         public ActionResult UpdateProduct(ProductViewModel product)
         {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("login", "account");
+            }
 
             using (HttpClient client = new HttpClient())
             {

@@ -32,12 +32,13 @@
     @Html.EditorFor(model => model.QuantityInStock, new { htmlAttributes = new { value = "10", min = "0" } })
     @Html.ValidationMessageFor(model => model.QuantityInStock, "", new { @class = "text-danger" })
 
-    <label>Category Name</label>
-    @Html.DropDownListFor(model => model.CategoryId, ViewBag.cats as SelectList)
+    @*<label>Category Name</label>*@
 
+    @Html.LabelFor(model=>model.CategoryId,"Category Name")
+    @Html.DropDownListFor(model=>model.CategoryId, ViewBag.cats as SelectList ,htmlAttributes:new { @class="form-control-sm", @style="margin-left:39%" })
 
     @Html.TextAreaFor(model => model.Description, new { rows = 10, cols = 50 })
-    <input type="submit" value="Send" class="btn-0" />
+    <input type="submit" value="Add" class="btn-0" />
 
     @*<button class="btn-0">Send</button>*@
     @*<button class="btn-2"> Edit</button>

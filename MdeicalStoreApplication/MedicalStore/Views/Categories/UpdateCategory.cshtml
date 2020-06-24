@@ -1,0 +1,50 @@
+﻿@model MedicalStore.Models.CategoryViewModel
+@{
+    ViewBag.Title = "UpdateCategory";
+}
+<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/form.css" rel="stylesheet" />
+        <style>
+
+            h2 {
+                text-align: center;
+                margin: 10px auto;
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>UpdateProduct</h2>
+
+@using (Html.BeginForm("updateCategory", "categories", FormMethod.Post))
+{
+    @Html.HiddenFor(aa => aa.Id)
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(aa => aa.Name, "Category Name", htmlAttributes: new { @class = "col-form-label" })
+        <div>
+            @Html.EditorFor(aa => aa.Name, new { htmlAttributes = new {  @class = "form-control" } })
+            @Html.ValidationMessageFor(aa => aa.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <input type="submit" value="Edit" class="btn btn-outline-primary btn-lg" />
+
+}
+
+
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    </body>
+    </html>
