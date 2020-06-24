@@ -3901,6 +3901,8 @@
     <Content Include="Views\Categories\CategoriesList.cshtml" />
     <Content Include="Views\Categories\UpdateCategory.cshtml" />
     <Content Include="Views\Admin\Cats.cshtml" />
+    <Content Include="Views\Admin\Orders.cshtml" />
+    <Content Include="Views\Shop\ShowProducts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
