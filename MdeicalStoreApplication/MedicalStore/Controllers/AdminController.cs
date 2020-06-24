@@ -1,8 +1,10 @@
-﻿using MedicalStore.Models;
+﻿using MedicalStore.Helpers;
+using MedicalStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 
@@ -50,6 +52,36 @@ namespace MedicalStore.Controllers
                 return RedirectToAction("Error","home");
             }
         }
+
+
+
+
+
+
+
+
+        [HttpGet]
+        public ActionResult Orders()
+        {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                var ordersResponse = client.GetAsync("api/Order/GetAllOrders").Result;
+
+                if (ordersResponse.IsSuccessStatusCode)
+                {
+                    var orders = ordersResponse.Content.ReadAsAsync<List<AdminOrderViewModel>>().Result;
+
+                    return PartialView(orders);
+
+                }
+                return RedirectToAction("Error", "Home");
 
      
         [HttpGet]

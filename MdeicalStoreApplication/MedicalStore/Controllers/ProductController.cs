@@ -41,7 +41,6 @@ namespace MedicalStore.Controllers
                 }
                 else
                 {
-                    // return View("NotFoundProduct");
                     return PartialView();
                 }
             }
