@@ -78,12 +78,39 @@ namespace MedicalStore.Controllers
                 {
                     var orders = ordersResponse.Content.ReadAsAsync<List<AdminOrderViewModel>>().Result;
 
-                    return PartialView(orders);
+                    return PartialView(orders.OrderByDescending(o => o.DateAdded));
 
                 }
                 return RedirectToAction("Error", "Home");
 
             }
         }
+
+
+        [HttpPost]
+        public ActionResult EditStatus(AdminOrderViewModel order)
+        {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                var orderResponse = client.PutAsJsonAsync("api/Order/EditStatus", order).Result;
+
+                if (orderResponse.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AdminDashBoard");
+
+                }
+
+                return RedirectToAction("Error", "Home");
+            }
+  
+        }
+
     }
 }
