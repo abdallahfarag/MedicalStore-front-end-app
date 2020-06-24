@@ -83,7 +83,8 @@ namespace MedicalStore.Controllers
                 }
                 return RedirectToAction("Error", "Home");
 
-     
+            }
+        }
         [HttpGet]
         public ActionResult Cats()
         {
