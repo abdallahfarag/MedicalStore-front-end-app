@@ -52,22 +52,66 @@ namespace MedicalStore.Controllers
             return RedirectToAction("Error", "Home");
         }
 
-
-        [HttpGet]
-        public ActionResult CategoriesList()
+        [HttpDelete]
+        public ActionResult DeleteCategory(CategoryViewModel category)
         {
-            using (HttpClient client = new HttpClient())
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("login", "account");
+            }
+            using (HttpClient client=new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44358/");
-                var response = client.GetAsync("api/categories").Result;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+
+                var response = client.DeleteAsync($"api/categories/{category.Id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    var cats = response.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
-                    return PartialView(cats);
+                   return RedirectToAction("AdminDashBoard", "Admin");
+                }
+            }
+            return RedirectToAction("Error", "home");
+        }
+      
+        [HttpGet]
+        public ActionResult UpdateCategory(int id)
+        {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("login", "account");
+            }
+            using (HttpClient client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                var response = client.GetAsync($"api/categories/{id}").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var category = response.Content.ReadAsAsync<CategoryViewModel>().Result;
+                    return PartialView(category);
                 }
             }
             return RedirectToAction("error", "home");
         }
 
+        [HttpPost]
+        public ActionResult UpdateCategory(CategoryViewModel category)
+        {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("login", "account");
+            }
+            using (HttpClient client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+
+                var updatedCategory = client.PutAsJsonAsync("api/categories", category).Result;
+                if (updatedCategory.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AdminDashBoard", "Admin");
+                }
+            }
+            return RedirectToAction("error", "home");
+        }
     }
 }

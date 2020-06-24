@@ -6,7 +6,7 @@
         {
             <li>
                 
-                @Html.ActionLink(item.Name, $"ViewCategoryProducts/{item.Id}", "shop")
+                @Html.ActionLink(item.Name, "ViewCategoryProducts", "shop",htmlAttributes:new { },routeValues:new { id=item.Id})
             </li>
         }
     </ul>

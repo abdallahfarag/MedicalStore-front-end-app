@@ -49,7 +49,7 @@ namespace MedicalStore.Controllers
                     var products = response.Content.ReadAsAsync<List<ProductViewModel>>().Result;
                     return PartialView(products);
                 }
-                return RedirectToAction("Error");
+                return RedirectToAction("Error","home");
             }
         }
 
@@ -78,39 +78,27 @@ namespace MedicalStore.Controllers
                 {
                     var orders = ordersResponse.Content.ReadAsAsync<List<AdminOrderViewModel>>().Result;
 
-                    return PartialView(orders.OrderByDescending(o => o.DateAdded));
+                    return PartialView(orders);
 
                 }
                 return RedirectToAction("Error", "Home");
 
             }
         }
-
-
-        [HttpPost]
-        public ActionResult EditStatus(AdminOrderViewModel order)
+        [HttpGet]
+        public ActionResult Cats()
         {
-            if (AuthorizationHelper.GetUserInfo() is null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            using (HttpClient client = new HttpClient())
+            using(HttpClient client=new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44358/");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
-                var orderResponse = client.PutAsJsonAsync("api/Order/EditStatus", order).Result;
-
-                if (orderResponse.IsSuccessStatusCode)
+                var response = client.GetAsync("api/categories").Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("AdminDashBoard");
-
+                    var categories = response.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
+                    return PartialView(categories);
                 }
-
-                return RedirectToAction("Error", "Home");
             }
-  
+            return RedirectToAction("error", "home");
         }
-
     }
 }
