@@ -1,35 +1,68 @@
 ﻿@model IEnumerable<AdminOrderViewModel>
 
-<div class="desc-cat text-center">
-    <h1>Orders Status</h1>
-</div>
-<div class="order-table">
-    <table>
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Order Date</th>
-                <th>User Name</th>
-                <th>Status</th>
-                <th>Confirm</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div class="desc-cat text-center">
+        <h1>Orders Status</h1>
+    </div>
+    <div class="order-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>User Name</th>
+                    <th>Status</th>
+                    <th>Confirm</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 0;}
+                @foreach (var item in Model)
+                {
+
+                using (Html.BeginForm("EditStatus", "Admin", FormMethod.Post))
+                {
                 <tr>
                     <td>@Html.DisplayFor(m => item.Id)</td>
+                    @Html.Hidden("Id", item.Id)
+
                     <td>@Html.DisplayFor(m => item.DateAdded)</td>
+
                     <td>@Html.DisplayFor(m => item.User.UserName) </td>
+
+
                     <td>
-                        @Html.EnumDropDownListFor(M => item.OrderStatus, new { @class = "form-control" })
+                        @Html.EnumDropDownListFor(m => item.OrderStatus, new { @class = $"form-control ord_{i}" })
+                        @*<input hidden id="OrderStatus" name="OrderStatus" class=@$"ordx_{}" />*@
+                        @*@Html.Hidden("OrderStatus", new { @class = $"ordx_{i}" })*@
+                        <input hidden id="OrderStatus" name="OrderStatus" class="ordx_@i" />
+
                     </td>
+
                     <td>
-                        <button>Change Status</button>
+                        <button id="order-change-btn_@i" class="order-change-btn">Change Status</button>
+
                     </td>
                 </tr>
-            }
+                }
+                { i++; }
+                }
 
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var orderChangeBtn = document.querySelectorAll('.order-change-btn');
+        for (let i = 0; i < orderChangeBtn.length; i++) {
+            orderChangeBtn[i].addEventListener('click', function () {
+
+                var itemOrderStatus = document.querySelector(".ord_" + i);
+
+                var orderStatus = document.querySelector(".ordx_" + i);
+
+                orderStatus.value = itemOrderStatus.value;
+
+            })
+        }
+
+    </script>

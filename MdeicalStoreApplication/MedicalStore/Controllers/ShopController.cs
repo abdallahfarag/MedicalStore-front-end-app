@@ -101,5 +101,36 @@ namespace MedicalStore.Controllers
             return RedirectToAction("shop", "shop");
         }
 
+
+
+        [HttpGet]
+        public ActionResult ShowProducts(CategoryViewModel category)
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                var productsResponse = client.GetAsync("api/Products").Result;
+
+                if (productsResponse.IsSuccessStatusCode)
+                {
+                    var products = productsResponse.Content.ReadAsAsync<List<ProductViewModel>>().Result;
+          
+                    if (category.Id != 0)
+                    {
+                        var catProducts = products.Where(i => i.CategoryId == category.Id).ToList();
+                        //return View(catProducts);
+                        return PartialView("ShowProducts", catProducts);
+
+                    }
+
+                    //return View(products);
+                    return PartialView("ShowProducts", products);
+
+                }
+            }
+            return RedirectToAction("Error", "Home");
+
+        }
     }
 }

@@ -49,15 +49,9 @@ namespace MedicalStore.Controllers
                     var products = response.Content.ReadAsAsync<List<ProductViewModel>>().Result;
                     return PartialView(products);
                 }
-                return RedirectToAction("Error");
+                return RedirectToAction("Error","home");
             }
         }
-
-
-
-
-
-
 
 
         [HttpGet]
@@ -78,12 +72,55 @@ namespace MedicalStore.Controllers
                 {
                     var orders = ordersResponse.Content.ReadAsAsync<List<AdminOrderViewModel>>().Result;
 
-                    return PartialView(orders);
+                    return PartialView(orders.OrderByDescending(o => o.DateAdded));
 
                 }
                 return RedirectToAction("Error", "Home");
 
             }
+        }
+
+
+        [HttpGet]
+        public ActionResult Cats()
+        {
+            using(HttpClient client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                var response = client.GetAsync("api/categories").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var categories = response.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
+                    return PartialView(categories);
+                }
+            }
+            return RedirectToAction("error", "home");
+        }
+
+
+        [HttpPost]
+        public ActionResult EditStatus(AdminOrderViewModel order)
+        {
+            if (AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                var orderResponse = client.PutAsJsonAsync("api/Order/EditStatus", order).Result;
+
+                if (orderResponse.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AdminDashBoard");
+
+                }
+
+                return RedirectToAction("Error", "Home");
+            }
+
         }
     }
 }

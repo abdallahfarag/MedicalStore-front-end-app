@@ -5,19 +5,23 @@
 </div>
 @using (Html.BeginForm("AddCategory", "Categories", FormMethod.Post))
 {
+
     @Html.TextBoxFor(c => c.Name, htmlAttributes: new { name = "cat" })
     @Html.ValidationMessageFor(c => c.Name, "", htmlAttributes: new { @class = "text-danger" })
 
     <button type="submit" class="btn-0">Add</button>
 }
+<div>
+    @Html.Action("cats", "Admin")
+</div>
 
 @*@using (Html.BeginForm("AddCategory", "Categories", FormMethod.Post))
-{
-    @Html.TextBoxFor(c => c.Name, htmlAttributes: new { name = "cat" })
-    @Html.ValidationMessageFor(c => c.Name, "", htmlAttributes: new { @class = "text-danger" })
+    {
+        @Html.TextBoxFor(c => c.Name, htmlAttributes: new { name = "cat" })
+        @Html.ValidationMessageFor(c => c.Name, "", htmlAttributes: new { @class = "text-danger" })
 
-    <button type="submit" class="btn-2"> Edit</button>
-}*@
+        <button type="submit" class="btn-2"> Edit</button>
+    }*@
 
 @*<form action="#" class="for">
         <input type="text" name="cat">
