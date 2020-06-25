@@ -20,11 +20,12 @@
         @Html.TextAreaFor(i => i.FeedBack, new { cols = "30", rows = "5" })
         @Html.ValidationMessageFor(i => i.FeedBack, "", new { @class = "text-danger" })
 
-        @Html.LabelFor(i => i.PaymentMethod, new { id = "paymentlbl" })
+        @Html.HiddenFor(i => i.PaymentMethod);
+        @*@Html.LabelFor(i => i.PaymentMethod, new { id = "paymentlbl" })
         <label for=@PaymentMethod.Cash>@PaymentMethod.Cash <i class="fas fa-money-bill-alt"></i></label>
         @Html.RadioButtonFor(i => i.PaymentMethod, PaymentMethod.Cash, new { id = PaymentMethod.Cash, style = "color:#fff" })
         <label for=@PaymentMethod.Paypal>@PaymentMethod.Paypal <i class="fab fa-cc-paypal"></i></label>
-        @Html.RadioButtonFor(i => i.PaymentMethod, PaymentMethod.Paypal, new { id = PaymentMethod.Paypal, style = "color:#fff" })
+        @Html.RadioButtonFor(i => i.PaymentMethod, PaymentMethod.Paypal, new { id = PaymentMethod.Paypal, style = "color:#fff" })*@
         <input type="submit" value="Confirm" class="next" @*onclick="go()"*@ />
     }
 </div>
