@@ -14,11 +14,10 @@ namespace MedicalStore.Controllers
     public class OrderController : Controller
     {
         [HttpGet]
-        public ActionResult OrderData(PaymentMethod paymentMethod)
+        public ActionResult OrderData()
         {
-            OrderViewModel orderViewModel = new OrderViewModel();
-            orderViewModel.PaymentMethod = paymentMethod;
-            return View(orderViewModel);
+         
+            return View();
         }
         
         [HttpPost]
@@ -28,10 +27,7 @@ namespace MedicalStore.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            if(order.PaymentMethod != PaymentMethod.Paypal)
-            {
-                order.PaymentMethod = PaymentMethod.Cash;
-            }
+            order.PaymentMethod = PaymentMethod.Cash;
                 using (HttpClient client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("https://localhost:44358/");

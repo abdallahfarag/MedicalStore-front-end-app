@@ -5,7 +5,7 @@
 }
 
 <div class="c-data">
-    <h2 class="des-data">Add order information</h2>
+    <h2 class="des-data">Add order information for payment (Cash on delivery)</h2>
     @using (Html.BeginForm("MakeOrder", "Order", FormMethod.Post, new { name = "mayform", enctype = "multipart/from-data" }))
     {
         @Html.LabelFor(i => i.OrderAddress)

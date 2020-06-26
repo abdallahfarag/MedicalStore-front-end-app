@@ -60,8 +60,8 @@
                 <div class="cart_buttons">
                     @if (Model.Count() > 0)
                     {
-                        <button type="button" id="confirmOrderBtn" class="button cart_button_checkout" onclick="location.href = '@Url.Action("OrderData" ,"Order")';UpdateCartCounter()">Check out cash</button>
-                        <button type="button" id="confirmOrderBtn" class="button cart_button_checkout" onclick="location.href = '@Url.Action("PaymentWithPaypal" ,"Cart")';UpdateCartCounter()">Check out Paypal</button>
+                        <button type="button" id="confirmOrderBtn" class="button cart_button_checkout" onclick="location.href = '@Url.Action("OrderData" ,"Order")';UpdateCartCounter()">Check out</button>
+                        @*<button type="button" id="confirmOrderBtn" class="button cart_button_checkout" onclick="location.href = '@Url.Action("PaymentWithPaypal" ,"Cart")';UpdateCartCounter()">Check out Paypal</button>*@
                     }
                 </div>
             </div>
