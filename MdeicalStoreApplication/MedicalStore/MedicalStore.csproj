@@ -115,6 +115,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\about.css" />
+    <Content Include="Content\aos.css" />
+    <Content Include="Content\contact_styles.css" />
     <Content Include="Content\Custom\admin.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -1765,6 +1768,19 @@
     <Content Include="Content\shop_styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\1.jpg" />
+    <Content Include="Images\3laa.jpeg" />
+    <Content Include="Images\5.jpg" />
+    <Content Include="Images\Abdallah1.jpeg" />
+    <Content Include="Images\about1.jpg" />
+    <Content Include="Images\about2.jpg" />
+    <Content Include="Images\banner_background.jpg" />
+    <Content Include="Images\char_1.png" />
+    <Content Include="Images\char_2.png" />
+    <Content Include="Images\char_3.png" />
+    <Content Include="Images\char_4.png" />
+    <Content Include="Images\Hagar11.jpeg" />
+    <Content Include="Images\mirnna1.jpeg" />
+    <Content Include="Images\renad1.jpeg" />
     <Content Include="Images\shop_background.jpg" />
     <Content Include="MEDICAL STORE\plugins\fontawesome-free-5.0.1\webfonts\fa-brands-400.eot" />
     <Content Include="MEDICAL STORE\plugins\fontawesome-free-5.0.1\webfonts\fa-brands-400.ttf" />
@@ -1850,6 +1866,8 @@
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.ttf" />
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.woff" />
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.woff2" />
+    <Content Include="Scripts\aos.js" />
+    <Content Include="Scripts\contact_custom.js" />
     <Content Include="Scripts\Custom\admin.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1955,7 +1973,7 @@
     <Content Include="MEDICAL STORE\images\adv_1.png" />
     <Content Include="MEDICAL STORE\images\adv_2.png" />
     <Content Include="MEDICAL STORE\images\adv_3.png" />
-    <Content Include="MEDICAL STORE\images\banner_2_background.jpg" />
+    <Content Include="Images\banner_2_background.jpg" />
     <Content Include="MEDICAL STORE\images\banner_2_product.png" />
     <Content Include="MEDICAL STORE\images\banner_background.jpg" />
     <Content Include="MEDICAL STORE\images\banner_product.png" />
@@ -1988,9 +2006,9 @@
     <Content Include="MEDICAL STORE\images\char_2.png" />
     <Content Include="MEDICAL STORE\images\char_3.png" />
     <Content Include="MEDICAL STORE\images\char_4.png" />
-    <Content Include="MEDICAL STORE\images\contact_1.png" />
-    <Content Include="MEDICAL STORE\images\contact_2.png" />
-    <Content Include="MEDICAL STORE\images\contact_3.png" />
+    <Content Include="Images\contact_1.png" />
+    <Content Include="Images\contact_2.png" />
+    <Content Include="Images\contact_3.png" />
     <Content Include="MEDICAL STORE\images\deals.png" />
     <Content Include="MEDICAL STORE\images\featured_1.png" />
     <Content Include="MEDICAL STORE\images\featured_2.png" />
@@ -2043,7 +2061,7 @@
     <Content Include="MEDICAL STORE\images\trends_1.jpg" />
     <Content Include="MEDICAL STORE\images\trends_2.jpg" />
     <Content Include="MEDICAL STORE\images\trends_3.jpg" />
-    <Content Include="MEDICAL STORE\images\trends_background.jpg" />
+    <Content Include="Images\trends_background.jpg" />
     <Content Include="MEDICAL STORE\images\user.png" />
     <Content Include="MEDICAL STORE\images\user.svg" />
     <Content Include="MEDICAL STORE\images\view_1.jpg" />
@@ -2112,7 +2130,7 @@
     <Content Include="MEDICAL STORE\styles\bootstrap4\popper.js" />
     <Content Include="Content\cart_responsive.css" />
     <Content Include="Content\cart_styles.css" />
-    <Content Include="MEDICAL STORE\styles\contact_responsive.css" />
+    <Content Include="Content\contact_responsive.css" />
     <Content Include="MEDICAL STORE\styles\contact_styles.css" />
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\css\brands.css" />
     <Content Include="MEDICAL STORE\styles\fontawesome-free-5.13.0-web\css\brands.min.css" />
@@ -3908,6 +3926,8 @@
     <Content Include="Views\Admin\Cats.cshtml" />
     <Content Include="Views\Admin\Orders.cshtml" />
     <Content Include="Views\Shop\ShowProducts.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

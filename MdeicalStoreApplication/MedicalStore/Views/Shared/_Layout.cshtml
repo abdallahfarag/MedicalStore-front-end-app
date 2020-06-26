@@ -24,6 +24,11 @@
     <link href="~/Content/cart_styles.css" rel="stylesheet" />
     <link href="~/Content/cart_responsive.css" rel="stylesheet" />
     <link href="~/Content/Order.css" rel="stylesheet" />
+    <link href="~/Content/contact_styles.css" rel="stylesheet" />
+    <link href="~/Content/contact_responsive.css" rel="stylesheet" />
+    <link href="~/Content/aos.css" rel="stylesheet" />
+    <link href="~/Content/about.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -105,7 +110,7 @@
                                         <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                             <div class="cart_icon">
                                                 <i class="fas fa-cart-arrow-down" style="font-size: 35px;"></i>
-                                                <div class="cart_count" ><span id="carCounter">0</span></div>
+                                                <div class="cart_count"><span id="carCounter">0</span></div>
 
                                             </div>
                                             <div class="cart_content">
@@ -140,17 +145,16 @@
                                     <ul class="standard_dropdown main_nav_dropdown">
                                         <li>
                                             @Html.ActionLink("Home", "Index", "Home")
-                                            @*<a href="#">Home</a>*@
                                         </li>
                                         <li class="hassubs">
                                             @Html.ActionLink("Shop", "Shop", "Shop")
-                                            @*<a href="#">Shop</a>*@
                                         </li>
                                         <li class="hassubs">
-                                            <a href="#">About</a>
+                                            @Html.ActionLink("About", "About", "Home")
+
                                         </li>
                                         <li>
-                                            <a href="#">Contact Us</a>
+                                            @Html.ActionLink("Contact Us", "ContactUs", "Home")
                                         </li>
                                     </ul>
                                 </div>
@@ -248,41 +252,32 @@
                     <div class="col-lg-2 offset-lg-2">
                         <div class="footer_column">
                             <div class="footer_title">Categories</div>
-                            @*<ul class="footer_list">
-                                <li><a href="#">Computers & Laptops</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Smartphones & Tablets</a></li>
-                                <li><a href="#">TV & Audio</a></li>
-                            </ul>
-                            <ul class="footer_list">
-                                <li><a href="#">Car Electronics</a></li>
-                            </ul>*@
 
-                            @Html.Action("categoriesList","categories")
+
+                            @Html.Action("categoriesList", "categories")
                         </div>
                     </div>
 
                     <div class="col-lg-2">
                         <div class="footer_column">
                             @*<ul class="footer_list footer_list_2">
-                                <li><a href="#">Video Games & Consoles</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Computers & Laptops</a></li>
-                            </ul>*@
+                                    <li><a href="#">Video Games & Consoles</a></li>
+                                    <li><a href="#">Accessories</a></li>
+                                    <li><a href="#">Cameras & Photos</a></li>
+                                    <li><a href="#">Hardware</a></li>
+                                    <li><a href="#">Computers & Laptops</a></li>
+                                </ul>*@
                         </div>
                     </div>
                     <div class="col-lg-2">
                         <div class="footer_column">
                             <div class="footer_title">Products</div>
                             <ul class="footer_list">
-                               
-                                <li>@Html.ActionLink("Home","index","home")</li>
-                              <li>  @Html.ActionLink("Shop","shop", "shop")</li>
+
+                                <li>@Html.ActionLink("Home", "index", "home")</li>
+                                <li>  @Html.ActionLink("Shop", "shop", "shop")</li>
                                 @*<li> @Html.ActionLink("About","about", "") </li>
-                               <li> @Html.ActionLink("Contact Us", "contactUs","")</li> *@
+                                    <li> @Html.ActionLink("Contact Us", "contactUs","")</li> *@
                             </ul>
                         </div>
                     </div>
@@ -345,6 +340,9 @@
     <script src="~/Scripts/product_custom.js"></script>
     <script src="~/Scripts/custom.js"></script>
     <script src="~/Scripts/cart_custom.js"></script>
+    <script src="~/Scripts/contact_custom.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBmnATbcsItV07AIzYhG-6E0ZYgZgTkh3w"></script>
+    <script src="~/Scripts/aos.js"></script>
     <script>
         $.get('/Cart/CartCounter', function (data) {
             $('#carCounter').html(data);
@@ -352,15 +350,18 @@
         function UpdateCartCounter() {
             $('#carCounter').load('/Cart/CartCounter');
 
-           
+
         }
-        //setInterval(function () {
-        //$('#carCounter').load('/Cart/CartCounter');
-        //}, 2000)
-           
-   
+                        //setInterval(function () {
+                        //$('#carCounter').load('/Cart/CartCounter');
+                        //}, 2000)
+
+
+        AOS.init({
+            duration: 2000,
+        });
     </script>
-@RenderSection("Scripts" ,false)
+    @RenderSection("Scripts", false)
 </body>
 
 </html>

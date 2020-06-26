@@ -13,6 +13,31 @@ namespace MedicalStore.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            using(HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                var productsResponse = client.GetAsync("api/Products").Result;
+                var categoryResponse = client.GetAsync("api/Categories").Result;
+                if (productsResponse.IsSuccessStatusCode && categoryResponse.IsSuccessStatusCode)
+                {
+                    var products = productsResponse.Content.ReadAsAsync<List<ProductViewModel>>().Result;
+                    var categories = categoryResponse.Content.ReadAsAsync<List<CategoryViewModel>>().Result;
+                    ViewBag.cats = categories;
+                    return View(products);
+                }
+            }
+            return RedirectToAction("Error", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ContactUs()
+        {
             return View();
         }
 

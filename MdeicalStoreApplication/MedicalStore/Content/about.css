@@ -1,0 +1,138 @@
+.main-about {
+    background-position: center;
+    background-image: linear-gradient( rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7) ),
+        url(../Images/shop_background.jpg) !important;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 350px;
+}
+.about_title {
+  padding: 20px;
+  color: #0e8ce4;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.about_hr {
+  width: 300px;
+  height: 1px;
+  background-color: #0e8ce4;
+  z-index: 10;
+  display: block;
+  margin: 10px auto;
+  position: relative;
+}
+.about_hr .about_mainhr {
+  position: absolute;
+  width: 190px;
+  height: 5px;
+  background-color: #0e8ce4;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mydes {
+  background-color: #0e8ce4;
+  text-align: justify;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+.about_des {
+  width: 90%;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 30px;
+}
+/* testimonial **/
+.testimonial {
+  background-color: rgb(231, 230, 230);
+  padding: 10px;
+  margin-top: 25px;
+}
+.testimonial .card {
+  padding: 5px;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+.testimonial .card img {
+  width: 100%;
+}
+.testimonial .card .cover {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+}
+.testimonial .card .me {
+  border: 5px solid #fff;
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+  z-index: 999;
+  margin-top: -85px;
+}
+.testimonial .card h3 {
+  color: #0e8ce4;
+  font-size: 1.4rem;
+}
+.testimonial .card .jop {
+  color: gray;
+  opacity: 0.5;
+}
+.testimonial .card .myinfo {
+  text-align: center;
+  font-style: italic;
+  width: 90%;
+}
+.testimonial .card .so {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+}
+.testimonial .card .so li {
+  font-size: 40px;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.testimonial .card .so .fa-google {
+  background-color: #dd4b39;
+  color: #fff;
+  padding: 20px;
+}
+.testimonial .card .so .fa-linkedin {
+  background-color: #00a0dc;
+  color: #fff;
+  padding: 20px;
+}
+.testimonial .card .so .fa-github-alt {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+.testimonial .card a {
+  width: 100%;
+}
+.testimonial .card .mybtn {
+  width: 100%;
+  background-color: #00a0dc;
+  cursor: pointer;
+  color: #fff;
+  outline: none !important;
+  transition: all 0.3s ease-in-out;
+}
+.testimonial .card .mybtn:hover {
+  transform: scale(0.95);
+}
+.testimonial .card i {
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.testimonial .card i:hover {
+  transform: scale(0.95);
+}
