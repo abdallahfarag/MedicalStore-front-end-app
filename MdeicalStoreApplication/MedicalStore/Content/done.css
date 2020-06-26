@@ -91,6 +91,7 @@ body {
     }
 .c-data input:last-child {
     width: 100px;
+    height: 39px;
     padding: 3px;
     border-radius: 10px;
     outline: none;
