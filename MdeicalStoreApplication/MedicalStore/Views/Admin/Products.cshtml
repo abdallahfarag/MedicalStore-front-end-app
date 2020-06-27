@@ -35,7 +35,7 @@
     @*<label>Category Name</label>*@
 
     @Html.LabelFor(model=>model.CategoryId,"Category Name")
-    @Html.DropDownListFor(model=>model.CategoryId, ViewBag.cats as SelectList ,htmlAttributes:new { @class="form-control-sm", @style="margin-left:39%" })
+    @Html.DropDownListFor(model=>model.CategoryId, ViewBag.cats as SelectList ,htmlAttributes:new { @class="form-control-sm", @style="margin-left:43%" })
 
     @Html.TextAreaFor(model => model.Description, new { rows = 10, cols = 50 })
     <input type="submit" value="Add" class="btn-0" />
