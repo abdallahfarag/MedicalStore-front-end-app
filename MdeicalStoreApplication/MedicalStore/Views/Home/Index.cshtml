@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    var firstProduct = Model.FirstOrDefault();
+    var lastProduct = Model.LastOrDefault();
     var categories = ViewBag.cats as IEnumerable<CategoryViewModel>;
 }
 
@@ -14,13 +14,13 @@
     <div class="container fill_height">
         <div class="row fill_height">
             <div class="banner_product_image">
-                <img src="data:image/png;base64,@firstProduct.Image" alt="" style="width: 35%; float: right;" />
+                <img src="data:image/png;base64,@lastProduct.Image" alt="" style="width: 35%; float: right;" />
             </div>
             <div class="col-lg-5 offset-lg-4 fill_height">
                 <div class="banner_content">
-                    <h1 class="banner_text">@firstProduct.Name</h1>
-                    <div class="banner_price">@firstProduct.Price.ToString("0.#####") LE</div>
-                    <div class="banner_product_name">@categories.SingleOrDefault(ww => ww.Id == firstProduct.CategoryId)</div>
+                    <h1 class="banner_text">@lastProduct.Name</h1>
+                    <div class="banner_price">@lastProduct.Price.ToString("0.#####") LE</div>
+                    <div class="banner_product_name">@categories.SingleOrDefault(ww => ww.Id == lastProduct.CategoryId)</div>
                     <div class="button banner_button">@Html.ActionLink("Buy Now", "ProductDetails", "Shop",htmlAttributes:new { } ,routeValues:new { id=firstProduct.Id})</div>
                 </div>
             </div>
