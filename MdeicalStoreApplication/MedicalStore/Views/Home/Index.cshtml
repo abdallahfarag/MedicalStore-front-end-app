@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
     var lastProduct = Model.LastOrDefault();
-    var categories = ViewBag.cats as IEnumerable<CategoryViewModel>;
+    var categories = ViewBag.cats as List<CategoryViewModel>;
 }
 
 
@@ -20,7 +20,7 @@
                 <div class="banner_content">
                     <h1 class="banner_text">@lastProduct.Name</h1>
                     <div class="banner_price">@lastProduct.Price.ToString("0.#####") LE</div>
-                    <div class="banner_product_name">@categories.SingleOrDefault(ww => ww.Id == lastProduct.CategoryId)</div>
+                    <div class="banner_product_name">@categories.Find(ww => ww.Id == lastProduct.CategoryId).Name</div>
                     <div class="button banner_button">@Html.ActionLink("Buy Now", "ProductDetails", "Shop",htmlAttributes:new { } ,routeValues:new { id=lastProduct.Id})</div>
                 </div>
             </div>

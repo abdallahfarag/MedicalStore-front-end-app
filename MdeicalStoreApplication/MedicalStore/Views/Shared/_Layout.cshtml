@@ -28,6 +28,8 @@
     <link href="~/Content/contact_responsive.css" rel="stylesheet" />
     <link href="~/Content/aos.css" rel="stylesheet" />
     <link href="~/Content/about.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Images/letter-m.png">
+
 
 </head>
 
@@ -92,7 +94,7 @@
                         <!-- Logo -->
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
-                                <div class="logo"><a href="#">MEDICAL STORE</a></div>
+                                <div class="logo">@Html.ActionLink("Medical Store" ,"Index" ,"Home")</div>
                             </div>
                         </div>
 
@@ -229,10 +231,10 @@
                     <div class="col-lg-3 footer_col">
                         <div class="footer_column footer_contact">
                             <div class="logo_container">
-                                <div class="logo"><a href="#">MEDICAL STORE</a></div>
+                                <div class="logo"><a href="#">Medical Store</a></div>
                             </div>
-                            <div class="footer_title">Got Question? Call Us</div>
-                            <div class="footer_phone">01210340540</div>
+                            <div class="footer_title">Have a question? call us</div>
+                            <div class="footer_phone">0110340540</div>
                             <div class="footer_social">
                                 <ul>
                                     <li>
@@ -260,13 +262,7 @@
 
                     <div class="col-lg-2">
                         <div class="footer_column">
-                            @*<ul class="footer_list footer_list_2">
-                                    <li><a href="#">Video Games & Consoles</a></li>
-                                    <li><a href="#">Accessories</a></li>
-                                    <li><a href="#">Cameras & Photos</a></li>
-                                    <li><a href="#">Hardware</a></li>
-                                    <li><a href="#">Computers & Laptops</a></li>
-                                </ul>*@
+                           
                         </div>
                     </div>
                     <div class="col-lg-2">
@@ -300,16 +296,16 @@
                                 </script>
                                 ITI Ismallia 3M | Design
                                 <i class="fa fa-heart" aria-hidden="true"></i> by
-                                <a href="#">MedicalStore Team</a>
+                                <a href="">MedicalStore Team</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </div>
                             <div class="logos ml-sm-auto">
                                 <ul class="logos_list">
                                     <li>
-                                        <a href="#"><img src="images/logos_1.png" alt="" /></a>
+                                        <a href=""><img src="images/logos_1.png" alt="" /></a>
                                     </li>
                                     <li>
-                                        <a href="#"><img src="images/logos_2.png" alt="" /></a>
+                                        <a href=""><img src="images/logos_2.png" alt="" /></a>
                                     </li>
                                 </ul>
                             </div>
@@ -343,6 +339,7 @@
     <script src="~/Scripts/contact_custom.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBmnATbcsItV07AIzYhG-6E0ZYgZgTkh3w"></script>
     <script src="~/Scripts/aos.js"></script>
+
     <script>
         $.get('/Cart/CartCounter', function (data) {
             $('#carCounter').html(data);
