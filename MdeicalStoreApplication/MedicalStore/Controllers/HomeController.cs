@@ -41,6 +41,24 @@ namespace MedicalStore.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult ContactUs(ContactUsViewModel contactUsViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                using(HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:44358/");
+                    var contactUsResponse = client.PostAsJsonAsync("api/ContactUs", contactUsViewModel).Result;
+                    if (contactUsResponse.IsSuccessStatusCode)
+                    {
+                        return View("MessageSent");
+                    }
+                }
+            }
+            return RedirectToAction("Error", "Home");
+        }
+
         [HttpGet]
         public ActionResult Error()
         {

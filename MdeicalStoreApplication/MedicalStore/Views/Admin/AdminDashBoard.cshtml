@@ -29,10 +29,14 @@
             <h3 class="products-add">Products</h3>
         </div>
         <div class="three x">
-            <h3 class="categorie-add">Categores</h3>
+            <h3 class="categorie-add">Categories</h3>
         </div>
         <div class="three x">
             <h3 class="order-status">Orders</h3>
+        </div>
+
+        <div class="three x">
+            <h3 class="mail1">Contact requests</h3>
         </div>
         <ul>
             <li><button class="logout" onclick="location.href = '@Url.Action("Logout", "Account")'">Logout</button></li>
@@ -78,6 +82,10 @@
             <!-- orders -->
             <div class="order">
                 @{Html.RenderAction("Orders", "Admin"); }
+            </div>
+
+            <div class="mail">
+                @Html.Action("ContactUs" ,"Admin")
             </div>
 
         </div>

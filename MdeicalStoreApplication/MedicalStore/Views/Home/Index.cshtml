@@ -21,7 +21,7 @@
                     <h1 class="banner_text">@lastProduct.Name</h1>
                     <div class="banner_price">@lastProduct.Price.ToString("0.#####") LE</div>
                     <div class="banner_product_name">@categories.Find(ww => ww.Id == lastProduct.CategoryId).Name</div>
-                    <div class="button banner_button">@Html.ActionLink("Buy Now", "ProductDetails", "Shop",htmlAttributes:new { } ,routeValues:new { id=lastProduct.Id})</div>
+                    <div class="button banner_button">@Html.ActionLink("Buy Now", "ProductDetails", "Shop", htmlAttributes: new { }, routeValues: new { id = lastProduct.Id })</div>
                 </div>
             </div>
         </div>
@@ -64,123 +64,107 @@
 
 
 
-<!-- Trends -->
-
-<div class="trends" style="border-bottom: 3px solid cornflowerblue;">
-    <div class="trends_background"
-         style="background-image: url(../../Images/trends_background.jpg);"></div>
-    <div class="trends_overlay"></div>
+<section class="first-home">
     <div class="container">
         <div class="row">
-            <!-- Trends Content -->
-            <div class="col-lg-3">
-                <div class="trends_container">
-                    <h2 class="trends_title">New in Medical Store</h2>
-                    <div class="trends_text">
-                        <p>
-                            We have the latest devices at excellent prices
-                        </p>
-                    </div>
-                    <div class="trends_slider_nav">
-                        <div class="trends_prev trends_nav">
-                            <i class="fas fa-angle-left ml-auto"></i>
-                        </div>
-                        <div class="trends_next trends_nav">
-                            <i class="fas fa-angle-right ml-auto"></i>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-12 col-xs-12 home-h">
+                <h1 class="home-head text-center">
+                    About medical store
+                </h1>
             </div>
-
-            <!-- Trends Slider -->
-            <div class="col-lg-9">
-                <div class="trends_slider_container">
-                    <!-- Trends Slider -->
-
-                    <div class="owl-carousel owl-theme trends_slider">
-                        <!-- Trends Slider Item -->
-                        @foreach (var item in Model)
-                        {
-                            var category = categories.SingleOrDefault(ww => ww.Id == item.CategoryId);
-                            <div class="owl-item active">
-                                <div class="trends_item is_new">
-                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                        <img src="data:image/png;base64,@item.Image" alt="" />
-                                    </div>
-                                    <div class="trends_content">
-                                        <div class="trends_category">
-                                            @category.Name
-                                        </div>
-                                        <div class="trends_info clearfix">
-                                            <div class="trends_name">
-                                                @item.Name
-                                            </div>
-                                            <div class="trends_price">@item.Price.ToString("0.#####") LE</div>
-                                        </div>
-                                    </div>
-                                    <ul class="trends_marks">
-                                        <li class="trends_mark trends_discount">-25%</li>
-                                        <li class="trends_mark trends_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
+            <div class="col-md-6 col-xs-12">
+                <img src="~/Images/banner_2_product.png" class="img-fluid" data-aos="zoom-in">
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <p class="desc-home" data-aos="fade-left">
+                    Medical Store is a virtual store on the Internet where customers
+                    can browse the catalog and select products of interest. The
+                    selected items may be collected in a shopping cart. At checkout
+                    time, the items in the shopping cart will be presented as an
+                    order. At that time, more information will be needed to complete
+                    the transaction. Usually, the customer will be asked to fill or
+                    select a billing address, a shipping address, phone number, Cash
+                    on Delivery.
+                </p>
             </div>
         </div>
     </div>
-</div>
-
-
-<!-- Recently Viewed -->
-
-<div class="viewed">
+</section>
+<section class="second-home">
     <div class="container">
         <div class="row">
-            <div class="col">
-                <div class="viewed_title_container">
-                    <h3 class="viewed_title">Recently Viewed</h3>
-                    <div class="viewed_nav_container">
-                        <div class="viewed_nav viewed_prev">
-                            <i class="fas fa-chevron-left"></i>
-                        </div>
-                        <div class="viewed_nav viewed_next">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="viewed_slider_container">
-                    <!-- Recently Viewed Slider -->
-
-                    <div class="owl-carousel owl-theme viewed_slider">
-                        <!-- Recently Viewed Item -->
-                        @foreach (var item in Model)
-                                {
-                                    var category = categories.SingleOrDefault(ww => ww.Id == item.CategoryId);
-                            <div class="owl-item">
-                                <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="viewed_image">
-                                        <img src="data:image/png;base64,@item.Image" alt="" />
-                                    </div>
-                                    <div class="viewed_content text-center">
-                                        <div class="viewed_price">$225<span>@item.Price.ToString("0.#####") LE</span></div>
-                                        <div class="viewed_name">
-                                            <a href="">@item.Name</a>
-                                        </div>
-                                    </div>
-                                    <ul class="item_marks">
-                                        <li class="item_mark item_discount">-25%</li>
-                                        <li class="item_mark item_new">new</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        }
-
-                    </div>
-                </div>
+            <div class="col-md-12 col-xs-12 home-h">
+                <h1 class="home-head text-center" data-aos="fade-in">
+                    Coronavirus<br>
+                    (History)
+                </h1>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <p class="desc-home" data-aos="fade-right">
+                    Coronaviruses were first discovered in the
+                    1930s when an acute respiratory infection of domesticated
+                    chickens was shown to be caused by infectious bronchitis
+                    virus (IBV). Arthur Schalk and M.C. Hawn described in
+                    1931 a new respiratory infection of chickens in North Dakota.
+                    The infection of new-born chicks was characterized by gasping
+                    and listlessness. The chicks' mortality rate was 40–90%.
+                    Fred Beaudette and Charles Hudson six years later
+                    successfully isolated and cultivated the infectious bronchitis
+                    virus which caused the disease. In the 1940s,
+                    two more animal coronaviruses, mouse hepatitis virus
+                    (MHV) and transmissible gastroenteritis virus (TGEV),
+                    were isolated. It was not realized at the time that
+                    these three different viruses were related
+                </p>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <img src="~/Images/crona2.jpg" class="img-fluid" data-aos="zoom-in">
             </div>
         </div>
     </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <!-- <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+            <div class="elfsight-app-4add1988-ab7c-4b12-9b6c-deed192ba86e"></div> -->
+            <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+            <div class="elfsight-app-2f3f7cba-8b9a-4847-bf5f-87ff884dc5bc" data-aos="fade-left"></div>
+        </div>
+    </div>
 </div>
+<section class="three-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 home-h">
+                <h1 class="home-head text-center" data-aos="fade-in">
+                    COVID-19
+                </h1>
+            </div>
+            <div class="col-md-6 col-xs-12" data-aos="fade-up">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/nIln6qpcO2w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <p class="desc-home" data-aos="fade-down">
+                    From recent reports about the
+                    stealthy ways the so-called Covid-19
+                    virus spreads and maims, a picture is
+                    emerging of an enigmatic pathogen whose
+                    effects are mainly mild, but which occasionally
+                    — and unpredictably — turns deadly in the second week.
+                    In less than three months, it’s infected almost 78,000 people,
+                    mostly in China, and killed more than 2,300….“Whether it will
+                    be contained or not, this outbreak is rapidly becoming the first
+                    true pandemic challenge that fits the disease X category,” Marion
+                    Koopmans, head of viroscience at Erasmus University Medical
+                    Center in Rotterdam, and a member of the WHO’s emergency
+                    committee, wrote Wednesday in the journal Cell.The disease
+                    has now spread to more than two dozen countries and territories.
+                    Some of those infected caught the virus in their local community
+                    and have no known link to China, the U.S. Centers for Disease Control
+                    and Prevention said.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

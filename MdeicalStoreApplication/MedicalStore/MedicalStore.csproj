@@ -1764,6 +1764,7 @@
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.svg" />
     <Content Include="Content\form.css" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\newHome.css" />
     <Content Include="Content\Order.css" />
     <Content Include="Content\shop_styles.css" />
     <Content Include="Global.asax" />
@@ -1778,6 +1779,8 @@
     <Content Include="Images\char_2.png" />
     <Content Include="Images\char_3.png" />
     <Content Include="Images\char_4.png" />
+    <Content Include="Images\crona1.jpg" />
+    <Content Include="Images\crona2.jpg" />
     <Content Include="Images\Hagar11.jpeg" />
     <Content Include="Images\letter-m.png" />
     <Content Include="Images\mirnna1.jpeg" />
@@ -2015,6 +2018,7 @@
     <Compile Include="Models\AdminOrderViewModel.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\ContactUsViewModel.cs" />
     <Compile Include="Models\Enums\Orderstatus.cs" />
     <Compile Include="Models\Enums\PaymentMethod.cs" />
     <Compile Include="Models\OrderItemsViewModel.cs" />
@@ -2073,6 +2077,8 @@
     <Content Include="Views\Shop\ShowProducts.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\MessageSent.cshtml" />
+    <Content Include="Views\Admin\ContactUs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

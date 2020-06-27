@@ -122,5 +122,28 @@ namespace MedicalStore.Controllers
             }
 
         }
+
+        [HttpGet]
+        public ActionResult ContactUs()
+        {
+            if(AuthorizationHelper.GetUserInfo() is null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            using(HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44358/");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["accessToken"].ToString());
+                var contactResponse = client.GetAsync("api/ContactUs").Result;
+                if (contactResponse.IsSuccessStatusCode)
+                {
+                    var contactMessages = contactResponse.Content.ReadAsAsync<List<ContactUsViewModel>>().Result;
+                    return PartialView(contactMessages);
+                }
+                return RedirectToAction("Error", "Home");
+            }
+            
+           
+        }
     }
 }

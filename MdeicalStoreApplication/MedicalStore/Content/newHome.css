@@ -1,0 +1,76 @@
+.first-home {
+    background-image: linear-gradient( rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7) ), url(../Images/about1.jpg) !important;
+    background-position: center;
+    background-size: cover;
+    padding: 10px;
+    border-bottom: 3px solid cornflowerblue;
+}
+.home-head {
+  color: #0e8ce4;
+  padding: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.home-head::after{
+    content: "";
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 1px;
+    width: 200px;
+    background-color: #0e8ce4;
+}
+.home-head::before{
+    content: "";
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 4px;
+    width: 120px;
+    z-index: 2;
+    background-color: #6495ed;
+}
+.desc-home {
+  line-height: 2.5;
+  font-size: 17px;
+  padding: 10px;
+  text-align: justify;
+}
+/* crona */
+.second-home{
+  padding: 10px;
+  border-bottom: 3px solid cornflowerblue;
+  
+}
+.second-home .desc-home{
+    line-height: 1.7;
+}
+.second-home img{
+    border-radius: 10px;
+    box-shadow: 2px 3px 10px;
+    
+}
+/* covid19 */
+.three-home{
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.7)
+      ),
+      url(../Images/crona1.jpg) !important;
+      background-position: center;
+      background-size: cover;
+    padding: 10px;
+    border-bottom: 3px solid cornflowerblue;
+    
+}
+.three-home .desc-home{
+    line-height: 1.4;
+    color: #504c4c !important;
+    
+}
+.three-home iframe{
+    border-radius: 10px;
+    box-shadow: 2px 3px 10px;
+}

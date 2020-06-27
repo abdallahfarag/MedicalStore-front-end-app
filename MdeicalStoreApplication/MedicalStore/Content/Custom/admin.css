@@ -56,7 +56,7 @@ i {
 }
 
 .x {
-    height: 100px;
+    height: 90px;
 }
 
 .two, .three {
@@ -69,11 +69,11 @@ h3 {
     cursor: pointer;
 }
 
-.admins-add, .categorie-add, .products-add {
+.admins-add, .categorie-add, .products-add ,.mail1{
     transition: all 0.5s ease-in-out;
 }
 
-    .admins-add:hover, .categorie-add:hover, .products-add:hover {
+    .admins-add:hover, .categorie-add:hover, .products-add:hover ,.mail1:hover {
         background-color: #fff;
         color: #6c5ce7;
     }
@@ -405,4 +405,20 @@ input:last-child {
         .order button:hover {
             background-color: #cac6fb;
         }
+.mail{
+    display:none;
+}
+.mail table {
+    width: 100%;
+    margin: 20px auto 0;
+    text-align: center;
+}
 
+.mail th {
+    background-color: #a098fd;
+    color: #fff;
+}
+.message{
+    max-width:300px;
+    overflow:scroll;
+}
