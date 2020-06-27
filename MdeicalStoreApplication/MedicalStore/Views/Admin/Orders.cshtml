@@ -21,7 +21,7 @@
 
                 using (Html.BeginForm("EditStatus", "Admin", FormMethod.Post))
                 {
-                <tr>
+                <tr class="order-element_@i">
                     <td>@Html.DisplayFor(m => item.Id)</td>
                     @Html.Hidden("Id", item.Id)
 
@@ -31,7 +31,7 @@
 
 
                     <td>
-                        @Html.EnumDropDownListFor(m => item.OrderStatus, new { @class = $"form-control ord_{i}" })
+                        @Html.EnumDropDownListFor(m => item.OrderStatus, new { @class = $"form-control ord_{i}"})
                         @*<input hidden id="OrderStatus" name="OrderStatus" class=@$"ordx_{}" />*@
                         @*@Html.Hidden("OrderStatus", new { @class = $"ordx_{i}" })*@
                         <input hidden id="OrderStatus" name="OrderStatus" class="ordx_@i" />
@@ -52,6 +52,25 @@
     </div>
 
     <script>
+    window.onload = function () {
+        for (let i = 0; i < orderChangeBtn.length; i++) {
+            let itemOrderStatus = document.querySelector(".ord_" + i);
+
+            console.log(itemOrderStatus.value)
+
+            //if equal cancelled
+            if (itemOrderStatus.value == 3) {
+                let itemOrderStatus = document.querySelector(".ord_" + i);
+                let orderChangeBtn = document.querySelector('#order-change-btn_' + i);
+
+                orderChangeBtn.disabled = true;
+                itemOrderStatus.disabled = true;
+
+            }
+        }
+    }
+
+
         var orderChangeBtn = document.querySelectorAll('.order-change-btn');
         for (let i = 0; i < orderChangeBtn.length; i++) {
             orderChangeBtn[i].addEventListener('click', function () {
